@@ -1,0 +1,24 @@
+{
+    "moviesApp": {
+        "writer" : {
+            "home": {
+                "title": "Writers",
+                "createLabel": "Create a new Writer",
+                "createOrEditLabel": "Create or edit a Writer",
+                "search": "Search for Writer"
+            },
+            "created": "A new Writer is created with identifier {{ param }}",
+            "updated": "A Writer is updated with identifier {{ param }}",
+            "deleted": "A Writer is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Writer {{ id }}?"
+            },
+            "detail": {
+                "title": "Writer"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "movie": "Movie"
+        }
+    }
+}

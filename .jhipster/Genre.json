@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "movie",
+            "otherEntityName": "movie",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "genre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "4",
+            "fieldValidateRulesMaxlength": 20
+        }
+    ],
+    "changelogDate": "20161123210314",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "genre",
+    "pagination": "pager"
+}

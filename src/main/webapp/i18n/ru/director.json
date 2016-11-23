@@ -1,0 +1,24 @@
+{
+    "moviesApp": {
+        "director" : {
+            "home": {
+                "title": "Directors",
+                "createLabel": "Создать новый Director",
+                "createOrEditLabel": "Создать или отредактировать Director",
+                "search": "Найти Director"
+            },
+            "created": "Новый Director создан с идентификатором {{ param }}",
+            "updated": "Director обновлен с идентификатором {{ param }}",
+            "deleted": "Director удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Director {{ id }}?"
+            },
+            "detail": {
+                "title": "Director"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "movie": "Movie"
+        }
+    }
+}

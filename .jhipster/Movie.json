@@ -1,0 +1,120 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "director",
+            "otherEntityName": "director",
+            "relationshipType": "many-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "firstName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "movie"
+        },
+        {
+            "relationshipName": "writer",
+            "otherEntityName": "writer",
+            "relationshipType": "many-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "firstName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "movie"
+        },
+        {
+            "relationshipName": "genre",
+            "otherEntityName": "genre",
+            "relationshipType": "many-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "title",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "movie"
+        },
+        {
+            "relationshipName": "actor",
+            "otherEntityName": "actor",
+            "relationshipType": "many-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "firstName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "movie"
+        },
+        {
+            "relationshipName": "country",
+            "otherEntityName": "country",
+            "relationshipType": "many-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "title",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "movie"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "5",
+            "fieldValidateRulesMaxlength": "100"
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": "1890"
+        },
+        {
+            "fieldName": "duration",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": "0.1",
+            "fieldValidateRulesMax": "10"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "10",
+            "fieldValidateRulesMaxlength": "1000"
+        },
+        {
+            "fieldName": "ageRating",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": "1",
+            "fieldValidateRulesMax": "18"
+        }
+    ],
+    "changelogDate": "20161123211242",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "movie",
+    "pagination": "pager"
+}

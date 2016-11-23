@@ -1,0 +1,184 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myMovieLabel" data-translate="moviesApp.movie.home.createOrEditLabel">Create or edit a Movie</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.movie.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.movie.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moviesApp.movie.title" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                    ng-model="vm.movie.title"
+                    required ng-minlength="5" ng-maxlength="100" />
+            <div ng-show="editForm.title.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.title.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.title.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="5">
+                    This field is required to be at least 5 characters.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.title.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moviesApp.movie.year" for="field_year">Year</label>
+            <input type="number" class="form-control" name="year" id="field_year"
+                    ng-model="vm.movie.year"
+                    required min="1890" />
+            <div ng-show="editForm.year.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.year.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.year.$error.min" data-translate="entity.validation.min" translate-value-min="1890">
+                    This field should be more than 1890.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.year.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moviesApp.movie.duration" for="field_duration">Duration</label>
+            <input type="number" class="form-control" name="duration" id="field_duration"
+                    ng-model="vm.movie.duration"
+                    required min="0.1" max="10" />
+            <div ng-show="editForm.duration.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.duration.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.duration.$error.min" data-translate="entity.validation.min" translate-value-min="0.1">
+                    This field should be more than 0.1.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.duration.$error.max" data-translate="entity.validation.max" translate-value-max="10">
+                    This field cannot be more than 10.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.duration.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moviesApp.movie.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                    ng-model="vm.movie.description"
+                    required ng-minlength="10" ng-maxlength="1000" />
+            <div ng-show="editForm.description.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.description.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.description.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="10">
+                    This field is required to be at least 10 characters.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.description.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="1000">
+                    This field cannot be longer than 1000 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="moviesApp.movie.ageRating" for="field_ageRating">Age Rating</label>
+            <input type="number" class="form-control" name="ageRating" id="field_ageRating"
+                    ng-model="vm.movie.ageRating"
+                    required min="1" max="18" />
+            <div ng-show="editForm.ageRating.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.ageRating.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.ageRating.$error.min" data-translate="entity.validation.min" translate-value-min="1">
+                    This field should be more than 1.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.ageRating.$error.max" data-translate="entity.validation.max" translate-value-max="18">
+                    This field cannot be more than 18.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.ageRating.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="moviesApp.movie.director" for="field_director">Director</label>
+            <select class="form-control" id="field_director" multiple name="director" ng-model="vm.movie.directors" ng-options="director as director.firstName for director in vm.directors track by director.id" required></select>
+        </div>
+        <div ng-show="editForm.director.$invalid">
+            <p class="help-block"
+                ng-show="editForm.director.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label data-translate="moviesApp.movie.writer" for="field_writer">Writer</label>
+            <select class="form-control" id="field_writer" multiple name="writer" ng-model="vm.movie.writers" ng-options="writer as writer.firstName for writer in vm.writers track by writer.id" required></select>
+        </div>
+        <div ng-show="editForm.writer.$invalid">
+            <p class="help-block"
+                ng-show="editForm.writer.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label data-translate="moviesApp.movie.genre" for="field_genre">Genre</label>
+            <select class="form-control" id="field_genre" multiple name="genre" ng-model="vm.movie.genres" ng-options="genre as genre.title for genre in vm.genres track by genre.id" required></select>
+        </div>
+        <div ng-show="editForm.genre.$invalid">
+            <p class="help-block"
+                ng-show="editForm.genre.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label data-translate="moviesApp.movie.actor" for="field_actor">Actor</label>
+            <select class="form-control" id="field_actor" multiple name="actor" ng-model="vm.movie.actors" ng-options="actor as actor.firstName for actor in vm.actors track by actor.id" required></select>
+        </div>
+        <div ng-show="editForm.actor.$invalid">
+            <p class="help-block"
+                ng-show="editForm.actor.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label data-translate="moviesApp.movie.country" for="field_country">Country</label>
+            <select class="form-control" id="field_country" multiple name="country" ng-model="vm.movie.countries" ng-options="country as country.title for country in vm.countries track by country.id" required></select>
+        </div>
+        <div ng-show="editForm.country.$invalid">
+            <p class="help-block"
+                ng-show="editForm.country.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

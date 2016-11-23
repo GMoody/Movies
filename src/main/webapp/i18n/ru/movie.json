@@ -1,0 +1,31 @@
+{
+    "moviesApp": {
+        "movie" : {
+            "home": {
+                "title": "Movies",
+                "createLabel": "Создать новый Movie",
+                "createOrEditLabel": "Создать или отредактировать Movie",
+                "search": "Найти Movie"
+            },
+            "created": "Новый Movie создан с идентификатором {{ param }}",
+            "updated": "Movie обновлен с идентификатором {{ param }}",
+            "deleted": "Movie удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Movie {{ id }}?"
+            },
+            "detail": {
+                "title": "Movie"
+            },
+            "title": "Title",
+            "year": "Year",
+            "duration": "Duration",
+            "description": "Description",
+            "ageRating": "Age Rating",
+            "director": "Director",
+            "writer": "Writer",
+            "genre": "Genre",
+            "actor": "Actor",
+            "country": "Country"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "moviesApp": {
+        "actor" : {
+            "home": {
+                "title": "Actors",
+                "createLabel": "Создать новый Actor",
+                "createOrEditLabel": "Создать или отредактировать Actor",
+                "search": "Найти Actor"
+            },
+            "created": "Новый Actor создан с идентификатором {{ param }}",
+            "updated": "Actor обновлен с идентификатором {{ param }}",
+            "deleted": "Actor удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Actor {{ id }}?"
+            },
+            "detail": {
+                "title": "Actor"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "movie": "Movie"
+        }
+    }
+}

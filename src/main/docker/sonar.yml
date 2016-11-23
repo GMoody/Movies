@@ -1,0 +1,8 @@
+version: '2'
+services:
+    movies-sonar:
+        container_name: movies-sonar
+        image: sonarqube:6.1-alpine
+        ports:
+            - 9000:9000
+            - 9092:9092
