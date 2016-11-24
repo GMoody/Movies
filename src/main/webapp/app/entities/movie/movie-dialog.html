@@ -124,7 +124,7 @@
 
         <div class="form-group">
             <label data-translate="moviesApp.movie.director" for="field_director">Director</label>
-            <select class="form-control" id="field_director" multiple name="director" ng-model="vm.movie.directors" ng-options="director as director.firstName for director in vm.directors track by director.id" required></select>
+            <select class="form-control" id="field_director" multiple name="director" ng-model="vm.movie.directors" ng-options="director as director.firstName + ' ' + director.lastName for director in vm.directors track by director.id" required></select>
         </div>
         <div ng-show="editForm.director.$invalid">
             <p class="help-block"
@@ -134,7 +134,7 @@
         </div>
         <div class="form-group">
             <label data-translate="moviesApp.movie.writer" for="field_writer">Writer</label>
-            <select class="form-control" id="field_writer" multiple name="writer" ng-model="vm.movie.writers" ng-options="writer as writer.firstName for writer in vm.writers track by writer.id" required></select>
+            <select class="form-control" id="field_writer" multiple name="writer" ng-model="vm.movie.writers" ng-options="writer as writer.firstName + ' ' + writer.lastName for writer in vm.writers track by writer.id" required></select>
         </div>
         <div ng-show="editForm.writer.$invalid">
             <p class="help-block"
@@ -154,7 +154,7 @@
         </div>
         <div class="form-group">
             <label data-translate="moviesApp.movie.actor" for="field_actor">Actor</label>
-            <select class="form-control" id="field_actor" multiple name="actor" ng-model="vm.movie.actors" ng-options="actor as actor.firstName for actor in vm.actors track by actor.id" required></select>
+            <select class="form-control" id="field_actor" multiple name="actor" ng-model="vm.movie.actors" ng-options="actor as actor.firstName + ' ' + actor.lastName for actor in vm.actors track by actor.id" required></select>
         </div>
         <div ng-show="editForm.actor.$invalid">
             <p class="help-block"

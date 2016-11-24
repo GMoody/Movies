@@ -2,30 +2,30 @@
     "moviesApp": {
         "movie" : {
             "home": {
-                "title": "Movies",
-                "createLabel": "Создать новый Movie",
-                "createOrEditLabel": "Создать или отредактировать Movie",
-                "search": "Найти Movie"
+                "title": "Фильмы",
+                "createLabel": "Создать новый фильм",
+                "createOrEditLabel": "Создать или редактировать фильм",
+                "search": "Найти фильм"
             },
-            "created": "Новый Movie создан с идентификатором {{ param }}",
-            "updated": "Movie обновлен с идентификатором {{ param }}",
-            "deleted": "Movie удален с идентификатором {{ param }}",
+            "created": "Новый фильм создан с идентификатором {{ param }}",
+            "updated": "Фильм обновлен с идентификатором {{ param }}",
+            "deleted": "Фильм удален с идентификатором {{ param }}",
             "delete": {
-                "question": "Вы уверены что хотите удалить Movie {{ id }}?"
+                "question": "Вы уверены что хотите удалить фильм {{ id }}?"
             },
             "detail": {
-                "title": "Movie"
+                "title": "Фильм"
             },
-            "title": "Title",
-            "year": "Year",
-            "duration": "Duration",
-            "description": "Description",
-            "ageRating": "Age Rating",
-            "director": "Director",
-            "writer": "Writer",
-            "genre": "Genre",
-            "actor": "Actor",
-            "country": "Country"
+            "title": "Название",
+            "year": "Год",
+            "duration": "Продолжительность",
+            "description": "Описание",
+            "ageRating": "Возрастной рейтинг",
+            "director": "Режиссёр",
+            "writer": "Сценарист",
+            "genre": "Жанр",
+            "actor": "Актёры",
+            "country": "Страна"
         }
     }
 }
