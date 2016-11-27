@@ -1,40 +1,94 @@
 <div ng-cloak>
     <div class="row">
         <!--<div class="col-md-4">-->
-            <!--<span class="hipster img-responsive img-rounded"></span>-->
+        <!--<span class="hipster img-responsive img-rounded"></span>-->
         <!--</div>-->
-        <div class="col-md-8">
-            <h1 data-translate="home.title">Welcome, Java Hipster!</h1>
+        <div class="col-md-12">
+            <!--<h1 data-translate="home.title">Welcome, Java Hipster!</h1>-->
+
+            <div>
+                <h2 data-translate="moviesApp.movie.home.title" class="title_center">Movies</h2>
+                <jhi-alert></jhi-alert>
+                <div class="table-responsive">
+                    <table class="jh-table table table-striped">
+                        <thead>
+                            <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                                <!--<th jh-sort-by="id"><span data-translate="global.field.id">ID</span> -->
+                                    <!--<span class="glyphicon glyphicon-sort"></span></th>-->
+                                <th jh-sort-by="title"><span data-translate="moviesApp.movie.title">Title</span>
+                                    <span class="glyphicon glyphicon-sort"></span></th>
+                                <th jh-sort-by="year"><span data-translate="moviesApp.movie.year">Year</span>
+                                    <span class="glyphicon glyphicon-sort"></span></th>
+                                <th jh-sort-by="duration"><span data-translate="moviesApp.movie.duration">Duration</span>
+                                    <span class="glyphicon glyphicon-sort"></span></th>
+                                <th jh-sort-by="description">
+                                    <span data-translate="moviesApp.movie.description">Description</span>
+                                    <span class="glyphicon glyphicon-sort"></span></th>
+                                <th jh-sort-by="ageRating"><span data-translate="moviesApp.movie.ageRating">Age Rating</span>
+                                    <span class="glyphicon glyphicon-sort"></span></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="movie in vm.movies track by movie.id">
+                                <!--<td><a ui-sref="movie-detail({id:movie.id})">{{movie.id}}</a></td>-->
+                                <td>{{movie.title}}</td>
+                                <td>{{movie.year}}</td>
+                                <td>{{movie.duration}}</td>
+                                <td>{{movie.description}}</td>
+                                <td>{{movie.ageRating}}</td>
+                                <td class="text-right">
+                                    <div class="btn-group flex-btn-group-container">
+                                        <button type="submit"
+                                                ui-sref="movie-detail({id:movie.id})"
+                                                class="btn btn-info btn-sm">
+                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                            <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <jhi-item-count page="vm.page" total="vm.queryCount"
+                                    items-per-page="vm.itemsPerPage"></jhi-item-count>
+                </div>
+                <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+            </div>
+
             <!--<p class="lead" data-translate="home.subtitle">This is your homepage</p>-->
 
             <!--<div ng-switch="vm.isAuthenticated()">-->
-                <!--<div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">-->
-                    <!--You are logged in as user "{{vm.account.login}}".-->
-                <!--</div>-->
+            <!--<div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">-->
+            <!--You are logged in as user "{{vm.account.login}}".-->
+            <!--</div>-->
 
-                <!--<div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.authenticated" translate-compile>-->
-                    <!--If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").-->
-                <!--</div>-->
+            <!--<div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.authenticated" translate-compile>-->
+            <!--If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").-->
+            <!--</div>-->
 
-                <!--<div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register" translate-compile>-->
-                    <!--You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>-->
-                <!--</div>-->
+            <!--<div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register" translate-compile>-->
+            <!--You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>-->
+            <!--</div>-->
             <!--</div>-->
 
             <!--<p data-translate="home.question">-->
-                <!--If you have any question on JHipster:-->
+            <!--If you have any question on JHipster:-->
             <!--</p>-->
 
             <!--<ul>-->
-                <!--<li><a href="http://jhipster.github.io/" target="_blank" data-translate="home.link.homepage">JHipster homepage</a></li>-->
-                <!--<li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" data-translate="home.link.stackoverflow">JHipster on Stack Overflow</a></li>-->
-                <!--<li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" data-translate="home.link.bugtracker">JHipster bug tracker</a></li>-->
-                <!--<li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" data-translate="home.link.chat">JHipster public chat room</a></li>-->
-                <!--<li><a href="https://twitter.com/java_hipster" target="_blank"  data-translate="home.link.follow">follow @java_hipster on Twitter</a></li>-->
+            <!--<li><a href="http://jhipster.github.io/" target="_blank" data-translate="home.link.homepage">JHipster homepage</a></li>-->
+            <!--<li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" data-translate="home.link.stackoverflow">JHipster on Stack Overflow</a></li>-->
+            <!--<li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" data-translate="home.link.bugtracker">JHipster bug tracker</a></li>-->
+            <!--<li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" data-translate="home.link.chat">JHipster public chat room</a></li>-->
+            <!--<li><a href="https://twitter.com/java_hipster" target="_blank"  data-translate="home.link.follow">follow @java_hipster on Twitter</a></li>-->
             <!--</ul>-->
 
             <!--<p>-->
-             <!--<span data-translate="home.like">If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" data-translate="home.github">Github</a>!-->
+            <!--<span data-translate="home.like">If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" data-translate="home.github">Github</a>!-->
             <!--</p>-->
         </div>
     </div>

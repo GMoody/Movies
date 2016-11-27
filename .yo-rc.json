@@ -26,6 +26,7 @@
     "languages": [
       "en",
       "ru"
-    ]
+    ],
+    "serviceDiscoveryType": false
   }
 }
