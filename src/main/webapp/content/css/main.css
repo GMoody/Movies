@@ -331,9 +331,26 @@ ui bootstrap tweaks
 
 
 
+/* ==========================================================================
+Fix error field display
+========================================================================== */
+.form-group .help-block {
+    position: static;
+}
+
 /* jhipster-needle-css-add-main JHipster will add new css style */
 
 
 .title_center{
     text-align: center;
+}
+
+.centerize {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pad_bot{
+    margin-bottom: 10px;
 }
