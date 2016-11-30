@@ -2,22 +2,22 @@
     "moviesApp": {
         "writer" : {
             "home": {
-                "title": "Writers",
-                "createLabel": "Создать новый Writer",
-                "createOrEditLabel": "Создать или отредактировать Writer",
-                "search": "Найти Writer"
+                "title": "Сценаристы",
+                "createLabel": "Создать нового сценариста",
+                "createOrEditLabel": "Создать или отредактировать сценариста",
+                "search": "Найти сценариста"
             },
-            "created": "Новый Writer создан с идентификатором {{ param }}",
-            "updated": "Writer обновлен с идентификатором {{ param }}",
-            "deleted": "Writer удален с идентификатором {{ param }}",
+            "created": "Новый сценарист создан с идентификатором {{ param }}",
+            "updated": "Сценарист обновлен с идентификатором {{ param }}",
+            "deleted": "Сценарист удален с идентификатором {{ param }}",
             "delete": {
-                "question": "Вы уверены что хотите удалить Writer {{ id }}?"
+                "question": "Вы уверены что хотите удалить сценариста {{ id }}?"
             },
             "detail": {
-                "title": "Writer"
+                "title": "Сценарист:"
             },
-            "firstName": "First Name",
-            "lastName": "Last Name",
+            "firstName": "Имя",
+            "lastName": "Фамилия",
             "movie": "Movie"
         }
     }

@@ -14,7 +14,7 @@
                 "question": "Are you sure you want to delete Country {{ id }}?"
             },
             "detail": {
-                "title": "Country"
+                "title": "Country:"
             },
             "title": "Title",
             "movie": "Movie"

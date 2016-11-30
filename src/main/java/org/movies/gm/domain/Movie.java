@@ -1,5 +1,6 @@
 package org.movies.gm.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -55,41 +56,46 @@ public class Movie implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @NotNull
     @JoinTable(name = "movie_director",
-               joinColumns = @JoinColumn(name="movies_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="directors_id", referencedColumnName="ID"))
+        joinColumns = @JoinColumn(name = "movies_id", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "directors_id", referencedColumnName = "ID"))
     private Set<Director> directors = new HashSet<>();
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @NotNull
     @JoinTable(name = "movie_writer",
-               joinColumns = @JoinColumn(name="movies_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="writers_id", referencedColumnName="ID"))
+        joinColumns = @JoinColumn(name = "movies_id", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "writers_id", referencedColumnName = "ID"))
     private Set<Writer> writers = new HashSet<>();
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @NotNull
     @JoinTable(name = "movie_genre",
-               joinColumns = @JoinColumn(name="movies_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="genres_id", referencedColumnName="ID"))
+        joinColumns = @JoinColumn(name = "movies_id", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "genres_id", referencedColumnName = "ID"))
     private Set<Genre> genres = new HashSet<>();
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @NotNull
     @JoinTable(name = "movie_actor",
-               joinColumns = @JoinColumn(name="movies_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="actors_id", referencedColumnName="ID"))
+        joinColumns = @JoinColumn(name = "movies_id", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "actors_id", referencedColumnName = "ID"))
     private Set<Actor> actors = new HashSet<>();
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @NotNull
     @JoinTable(name = "movie_country",
-               joinColumns = @JoinColumn(name="movies_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="countries_id", referencedColumnName="ID"))
+        joinColumns = @JoinColumn(name = "movies_id", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "countries_id", referencedColumnName = "ID"))
     private Set<Country> countries = new HashSet<>();
+
+    @ManyToMany(mappedBy = "favouriteMovies")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<User> followers = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -289,6 +295,31 @@ public class Movie implements Serializable {
         this.countries = countries;
     }
 
+    public Movie followers(Set<User> followers) {
+        this.followers = followers;
+        return this;
+    }
+
+    public Set<User> getFollowers() {
+        return followers;
+    }
+
+    public Movie addFollower(User user) {
+        followers.add(user);
+        user.getFavouriteMovies().add(this);
+        return this;
+    }
+
+    public Movie removeFollower(User user) {
+        followers.remove(user);
+        user.getFavouriteMovies().remove(this);
+        return this;
+    }
+
+    public void setFollowers(Set<User> followers) {
+        this.followers = followers;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -298,7 +329,7 @@ public class Movie implements Serializable {
             return false;
         }
         Movie movie = (Movie) o;
-        if(movie.id == null || id == null) {
+        if (movie.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, movie.id);

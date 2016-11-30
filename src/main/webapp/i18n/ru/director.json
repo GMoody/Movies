@@ -2,22 +2,22 @@
     "moviesApp": {
         "director" : {
             "home": {
-                "title": "Directors",
-                "createLabel": "Создать новый Director",
-                "createOrEditLabel": "Создать или отредактировать Director",
-                "search": "Найти Director"
+                "title": "Режиссёры",
+                "createLabel": "Создать нового режиссёра",
+                "createOrEditLabel": "Создать или отредактировать режиссёра",
+                "search": "Найти режиссёра"
             },
-            "created": "Новый Director создан с идентификатором {{ param }}",
-            "updated": "Director обновлен с идентификатором {{ param }}",
-            "deleted": "Director удален с идентификатором {{ param }}",
+            "created": "Новый режиссёр создан с идентификатором {{ param }}",
+            "updated": "Режиссёр обновлен с идентификатором {{ param }}",
+            "deleted": "Режиссёр удален с идентификатором {{ param }}",
             "delete": {
-                "question": "Вы уверены что хотите удалить Director {{ id }}?"
+                "question": "Вы уверены что хотите удалить режиссёра {{ id }}?"
             },
             "detail": {
-                "title": "Director"
+                "title": "Режиссёр:"
             },
-            "firstName": "First Name",
-            "lastName": "Last Name",
+            "firstName": "Имя",
+            "lastName": "Фамилия",
             "movie": "Movie"
         }
     }

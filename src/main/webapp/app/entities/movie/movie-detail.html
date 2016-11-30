@@ -38,9 +38,7 @@
         </dd>
         <dt><span data-translate="moviesApp.movie.genre">Genre</span></dt>
         <dd>
-            <span ng-repeat="genre in vm.movie.genres">
-                <a ui-sref="genre-detail({id: genre.id})">{{genre.title}}</a>{{$last ? '' : ', '}}
-            </span>
+            <span ng-repeat="genre in vm.movie.genres">{{genre.title}}{{$last ? '' : ', '}}</span>
         </dd>
         <dt><span data-translate="moviesApp.movie.actor">Actor</span></dt>
         <dd>
@@ -50,9 +48,7 @@
         </dd>
         <dt><span data-translate="moviesApp.movie.country">Country</span></dt>
         <dd>
-            <span ng-repeat="country in vm.movie.countries">
-                <a ui-sref="country-detail({id: country.id})">{{country.title}}</a>{{$last ? '' : ', '}}
-            </span>
+            <span ng-repeat="country in vm.movie.countries">{{country.title}}{{$last ? '' : ', '}}</span>
         </dd>
     </dl>
 

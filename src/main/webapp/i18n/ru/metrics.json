@@ -8,8 +8,8 @@
             "memory": {
                 "title": "Память",
                 "total": "Всего памяти",
-                "heap": "Куча",
-                "nonheap": "Не куча"
+                "heap": "heap",
+                "nonheap": "non-heap"
             },
             "threads": {
                 "title": "Потоки",

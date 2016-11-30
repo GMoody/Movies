@@ -14,7 +14,7 @@
                 "question": "Are you sure you want to delete movie {{ id }}?"
             },
             "detail": {
-                "title": "Movie"
+                "title": "Movie:"
             },
             "title": "Title",
             "year": "Year",

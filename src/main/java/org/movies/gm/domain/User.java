@@ -1,21 +1,20 @@
 package org.movies.gm.domain;
 
-import org.movies.gm.config.Constants;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
+import org.movies.gm.config.Constants;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
-import java.time.ZonedDateTime;
 
 /**
  * A user.
@@ -75,6 +74,13 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @Column(name = "reset_date", nullable = true)
     private ZonedDateTime resetDate = null;
+
+    @ManyToMany
+    @JoinTable(name = "user_movie",
+        joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "movies_id", referencedColumnName="ID"))
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Movie> favouriteMovies = new HashSet<>();
 
     @JsonIgnore
     @ManyToMany
@@ -169,6 +175,24 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setResetDate(ZonedDateTime resetDate) {
        this.resetDate = resetDate;
+    }
+
+    public Set<Movie> getFavouriteMovies() {
+        return favouriteMovies;
+    }
+
+    public User addFavouriteMovies(Movie movie) {
+        favouriteMovies.add(movie);
+        return this;
+    }
+
+    public User removeFavouriteMovies(Movie movie) {
+        favouriteMovies.remove(movie);
+        return this;
+    }
+
+    public void setFavouriteMovies(Set<Movie> favouriteMovies) {
+        this.favouriteMovies = favouriteMovies;
     }
 
     public String getLangKey() {

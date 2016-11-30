@@ -55,7 +55,7 @@
             parent: 'entity',
             url: '/writer/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: [],
                 pageTitle: 'moviesApp.writer.detail.title'
             },
             views: {

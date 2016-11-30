@@ -2,19 +2,19 @@
     "moviesApp": {
         "country" : {
             "home": {
-                "title": "Countries",
-                "createLabel": "Создать новый Country",
-                "createOrEditLabel": "Создать или отредактировать Country",
-                "search": "Найти Country"
+                "title": "Страны",
+                "createLabel": "Создать новую страну",
+                "createOrEditLabel": "Создать или отредактировать страну",
+                "search": "Найти страну"
             },
-            "created": "Новый Country создан с идентификатором {{ param }}",
-            "updated": "Country обновлен с идентификатором {{ param }}",
-            "deleted": "Country удален с идентификатором {{ param }}",
+            "created": "Новая страна создан с идентификатором {{ param }}",
+            "updated": "Страна обновлен с идентификатором {{ param }}",
+            "deleted": "Страна удалена с идентификатором {{ param }}",
             "delete": {
-                "question": "Вы уверены что хотите удалить Country {{ id }}?"
+                "question": "Вы уверены что хотите удалить страну {{ id }}?"
             },
             "detail": {
-                "title": "Country"
+                "title": "Страна:"
             },
             "title": "Title",
             "movie": "Movie"

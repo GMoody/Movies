@@ -2,22 +2,22 @@
     "moviesApp": {
         "actor" : {
             "home": {
-                "title": "Actors",
-                "createLabel": "Создать новый Actor",
-                "createOrEditLabel": "Создать или отредактировать Actor",
-                "search": "Найти Actor"
+                "title": "Актрёры",
+                "createLabel": "Создать нового актёра",
+                "createOrEditLabel": "Создать или отредактировать актёра",
+                "search": "Найти актёра"
             },
-            "created": "Новый Actor создан с идентификатором {{ param }}",
-            "updated": "Actor обновлен с идентификатором {{ param }}",
-            "deleted": "Actor удален с идентификатором {{ param }}",
+            "created": "Новый актёр создан с идентификатором {{ param }}",
+            "updated": "Актёр обновлен с идентификатором {{ param }}",
+            "deleted": "Актёр удален с идентификатором {{ param }}",
             "delete": {
-                "question": "Вы уверены что хотите удалить Actor {{ id }}?"
+                "question": "Вы уверены что хотите удалить актёра {{ id }}?"
             },
             "detail": {
-                "title": "Actor"
+                "title": "Актёр:"
             },
-            "firstName": "First Name",
-            "lastName": "Last Name",
+            "firstName": "Имя",
+            "lastName": "Фамилия",
             "movie": "Movie"
         }
     }

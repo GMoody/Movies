@@ -2,19 +2,19 @@
     "moviesApp": {
         "genre" : {
             "home": {
-                "title": "Genres",
-                "createLabel": "Создать новый Genre",
-                "createOrEditLabel": "Создать или отредактировать Genre",
-                "search": "Найти Genre"
+                "title": "Жанры",
+                "createLabel": "Создать новый жанр",
+                "createOrEditLabel": "Создать или отредактировать жанр",
+                "search": "Найти жанр"
             },
-            "created": "Новый Genre создан с идентификатором {{ param }}",
-            "updated": "Genre обновлен с идентификатором {{ param }}",
-            "deleted": "Genre удален с идентификатором {{ param }}",
+            "created": "Новый жанр создан с идентификатором {{ param }}",
+            "updated": "Жанр обновлен с идентификатором {{ param }}",
+            "deleted": "Жанр удален с идентификатором {{ param }}",
             "delete": {
-                "question": "Вы уверены что хотите удалить Genre {{ id }}?"
+                "question": "Вы уверены что хотите удалить жанр {{ id }}?"
             },
             "detail": {
-                "title": "Genre"
+                "title": "Жанр:"
             },
             "title": "Title",
             "movie": "Movie"
