@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="GMoody" id="1480539159102-1">
+        <createTable tableName="user_movie">
+            <column name="users_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="movies_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="GMoody" id="1480539159102-2">
+        <addPrimaryKey columnNames="users_id, movies_id" tableName="user_movie"/>
+    </changeSet>
+
+    <changeSet author="GMoody" id="1480539159102-3">
+        <addForeignKeyConstraint
+            baseColumnNames="users_id"
+            baseTableName="user_movie"
+            constraintName="FK_4ien27hproh8xgj15syug7th3"
+            deferrable="false"
+            initiallyDeferred="false"
+            referencedColumnNames="id"
+            referencedTableName="jhi_user"/>
+    </changeSet>
+
+    <changeSet author="GMoody" id="1480539159102-4">
+        <addForeignKeyConstraint
+            baseColumnNames="movies_id"
+            baseTableName="user_movie"
+            constraintName="FK_quf9jrbnjkecjm34bess2xbvy"
+            deferrable="false"
+            initiallyDeferred="false"
+            referencedColumnNames="id"
+            referencedTableName="movie"/>
+    </changeSet>
+
+    <changeSet author="GMoody" id="1480539159102-5">
+        <dropDefaultValue
+            columnDataType="timestamp"
+            columnName="created_date"
+            tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>
