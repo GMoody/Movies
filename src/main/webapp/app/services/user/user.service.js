@@ -19,7 +19,15 @@
             },
             'save': { method:'POST' },
             'update': { method:'PUT' },
-            'delete':{ method:'DELETE'}
+            'delete':{ method:'DELETE' },
+            'getUserMoviesByLogin': {
+                url: 'api/users/:login/movies',
+                method: 'GET',
+                isArray: true,
+                params: {
+                    login: "@login"
+                }
+            }
         });
 
         return service;

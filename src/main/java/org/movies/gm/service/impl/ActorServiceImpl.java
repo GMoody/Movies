@@ -21,7 +21,7 @@ import java.util.List;
 public class ActorServiceImpl implements ActorService{
 
     private final Logger log = LoggerFactory.getLogger(ActorServiceImpl.class);
-    
+
     @Inject
     private ActorRepository actorRepository;
 
@@ -39,13 +39,13 @@ public class ActorServiceImpl implements ActorService{
 
     /**
      *  Get all the actors.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<Actor> findAll(Pageable pageable) {
-        log.debug("Request to get all Actors");
+        log.debug("Request to get all Actors by page");
         Page<Actor> result = actorRepository.findAll(pageable);
         return result;
     }
@@ -56,7 +56,7 @@ public class ActorServiceImpl implements ActorService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Actor findOne(Long id) {
         log.debug("Request to get Actor : {}", id);
         Actor actor = actorRepository.findOne(id);
@@ -71,5 +71,12 @@ public class ActorServiceImpl implements ActorService{
     public void delete(Long id) {
         log.debug("Request to delete Actor : {}", id);
         actorRepository.delete(id);
+    }
+
+    @Override
+    public List<Actor> findAll() {
+        log.debug("Request to get all Actors");
+        List<Actor> result = actorRepository.findAll();
+        return result;
     }
 }

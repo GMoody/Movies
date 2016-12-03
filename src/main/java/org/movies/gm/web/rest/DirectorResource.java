@@ -29,7 +29,7 @@ import java.util.Optional;
 public class DirectorResource {
 
     private final Logger log = LoggerFactory.getLogger(DirectorResource.class);
-        
+
     @Inject
     private DirectorService directorService;
 
@@ -90,6 +90,14 @@ public class DirectorResource {
         Page<Director> page = directorService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/directors");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/directors/all")
+    @Timed
+    public ResponseEntity<List<Director>> getAllDirectors(){
+        log.debug("REST request to get all Directors");
+        List<Director> directors = directorService.findAll();
+        return new ResponseEntity<>(directors, HttpStatus.OK);
     }
 
     /**

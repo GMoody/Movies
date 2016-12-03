@@ -21,7 +21,7 @@ public interface GenreService {
 
     /**
      *  Get all the genres.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -41,4 +41,6 @@ public interface GenreService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<Genre> findAll();
 }

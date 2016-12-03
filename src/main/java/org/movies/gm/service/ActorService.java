@@ -21,7 +21,7 @@ public interface ActorService {
 
     /**
      *  Get all the actors.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -41,4 +41,6 @@ public interface ActorService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<Actor> findAll();
 }

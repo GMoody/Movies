@@ -1,15 +1,16 @@
 package org.movies.gm.web.rest;
 
-import org.movies.gm.config.Constants;
 import com.codahale.metrics.annotation.Timed;
+import org.movies.gm.config.Constants;
+import org.movies.gm.domain.Movie;
 import org.movies.gm.domain.User;
 import org.movies.gm.repository.UserRepository;
 import org.movies.gm.security.AuthoritiesConstants;
 import org.movies.gm.service.MailService;
 import org.movies.gm.service.UserService;
-import org.movies.gm.web.rest.vm.ManagedUserVM;
 import org.movies.gm.web.rest.util.HeaderUtil;
 import org.movies.gm.web.rest.util.PaginationUtil;
+import org.movies.gm.web.rest.vm.ManagedUserVM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,10 +22,12 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.net.URISyntaxException;
-import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -187,5 +190,14 @@ public class UserResource {
         log.debug("REST request to delete User: {}", login);
         userService.deleteUser(login);
         return ResponseEntity.ok().headers(HeaderUtil.createAlert( "userManagement.deleted", login)).build();
+    }
+
+    @GetMapping("/users/{login}/movies")
+    @Timed
+    public ResponseEntity<Set<Movie>> getUserMoviesByLogin(@PathVariable String login){
+        log.debug("REST request to get user {" + login + "} movies");
+        Optional<User> user = userService.findOneByLogin(login);
+        if(user.isPresent()) return new ResponseEntity<>(user.get().getFavouriteMovies(), HttpStatus.OK);
+        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

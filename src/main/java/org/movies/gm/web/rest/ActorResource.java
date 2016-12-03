@@ -29,7 +29,7 @@ import java.util.Optional;
 public class ActorResource {
 
     private final Logger log = LoggerFactory.getLogger(ActorResource.class);
-        
+
     @Inject
     private ActorService actorService;
 
@@ -90,6 +90,14 @@ public class ActorResource {
         Page<Actor> page = actorService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/actors");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/actors/all")
+    @Timed
+    public ResponseEntity<List<Actor>> getAllActors(){
+        log.debug("REST request to get all Actors");
+        List<Actor> actors = actorService.findAll();
+        return new ResponseEntity<>(actors, HttpStatus.OK);
     }
 
     /**

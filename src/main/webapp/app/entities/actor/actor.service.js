@@ -20,7 +20,12 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'getAll': {
+                method: 'GET',
+                url: 'api/actors/all',
+                isArray: true
+            }
         });
     }
 })();

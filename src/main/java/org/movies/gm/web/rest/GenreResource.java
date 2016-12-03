@@ -29,7 +29,7 @@ import java.util.Optional;
 public class GenreResource {
 
     private final Logger log = LoggerFactory.getLogger(GenreResource.class);
-        
+
     @Inject
     private GenreService genreService;
 
@@ -90,6 +90,14 @@ public class GenreResource {
         Page<Genre> page = genreService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/genres");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/genres/all")
+    @Timed
+    public ResponseEntity<List<Genre>> getAllGenres(){
+        log.debug("REST request to get all Genres");
+        List<Genre> genres = genreService.findAll();
+        return new ResponseEntity<>(genres, HttpStatus.OK);
     }
 
     /**

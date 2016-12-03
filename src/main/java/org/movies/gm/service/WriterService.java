@@ -21,7 +21,7 @@ public interface WriterService {
 
     /**
      *  Get all the writers.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -41,4 +41,6 @@ public interface WriterService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<Writer> findAll();
 }

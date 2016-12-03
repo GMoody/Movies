@@ -25,7 +25,17 @@
             "writer": "Writer",
             "genre": "Genre",
             "actor": "Actor",
-            "country": "Country"
+            "country": "Country",
+            "favourites": {
+                "buttons": {
+                    "ok": "Ok"
+                },
+                "title": "Add movie to favourites",
+                "questions": {
+                    "add": "Add {{ param }} to favourites?",
+                    "remove": "Remove {{ param }} from favourites?"
+                }
+            }
         }
     }
 }

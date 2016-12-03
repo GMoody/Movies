@@ -5,9 +5,9 @@
         .module('moviesApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', '$state', 'Movie', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants', 'Principal', 'LoginService' ];
+    HomeController.$inject = ['$scope', '$state', 'Movie', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants', 'Principal', 'LoginService', 'MovieFollowers', 'User'];
 
-    function HomeController($scope, $state, Movie, ParseLinks, AlertService, pagingParams, paginationConstants, Principal, LoginService) {
+    function HomeController($scope, $state, Movie, ParseLinks, AlertService, pagingParams, paginationConstants, Principal, LoginService, MovieFollowers, User) {
         var vm = this;
 
         vm.loadPage = loadPage;
@@ -17,9 +17,17 @@
         vm.itemsPerPage = paginationConstants.itemsPerPage;
 
         vm.account = null;
+        vm.userMovies = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
+
+        vm.checkMovie = checkMovie;
+
+        // Buttons actions
+        vm.addFollower = addFollower;
+        vm.removeFollower = removeFollower;
+
         $scope.$on('authenticationSuccess', function () {
             getAccount();
         });
@@ -31,6 +39,10 @@
             Principal.identity().then(function (account) {
                 vm.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated;
+                User.getUserMoviesByLogin({login: vm.account.login}, onReceive);
+                function onReceive(movies) {
+                    vm.userMovies = movies;
+                }
             });
         }
 
@@ -38,12 +50,12 @@
             $state.go('register');
         }
 
-        function loadPage (page) {
+        function loadPage(page) {
             vm.page = page;
             vm.transition();
         }
 
-        function transition () {
+        function transition() {
             $state.transitionTo($state.$current, {
                 page: vm.page,
                 sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
@@ -51,7 +63,7 @@
             });
         }
 
-        function loadAll () {
+        function loadAll() {
             Movie.query({
                 page: pagingParams.page - 1,
                 size: vm.itemsPerPage,
@@ -64,6 +76,7 @@
                 }
                 return result;
             }
+
             function onSuccess(data, headers) {
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
@@ -71,8 +84,30 @@
                 vm.movies = data;
                 vm.page = pagingParams.page;
             }
+
             function onError(error) {
                 AlertService.error(error.data.message);
+            }
+        }
+
+        function addFollower(movie) {
+            MovieFollowers.addFollower({movieID: movie.id, userLogin: vm.account.login});
+            $state.reload();
+        }
+
+        function removeFollower(movie) {
+            MovieFollowers.removeFollower({movieID: movie.id, userLogin: vm.account.login});
+            $state.reload();
+        }
+
+        function checkMovie(movie) {
+            if(vm.userMovies == null) return false;
+            else {
+                for(var i = 0; i < vm.userMovies.length; i++){
+                    if(vm.userMovies[i].id == movie.id)
+                        return true;
+                }
+                return false;
             }
         }
     }

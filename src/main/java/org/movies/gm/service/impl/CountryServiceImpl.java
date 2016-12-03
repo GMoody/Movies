@@ -21,7 +21,7 @@ import java.util.List;
 public class CountryServiceImpl implements CountryService{
 
     private final Logger log = LoggerFactory.getLogger(CountryServiceImpl.class);
-    
+
     @Inject
     private CountryRepository countryRepository;
 
@@ -39,13 +39,13 @@ public class CountryServiceImpl implements CountryService{
 
     /**
      *  Get all the countries.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<Country> findAll(Pageable pageable) {
-        log.debug("Request to get all Countries");
+        log.debug("Request to get all Countries by page");
         Page<Country> result = countryRepository.findAll(pageable);
         return result;
     }
@@ -56,7 +56,7 @@ public class CountryServiceImpl implements CountryService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Country findOne(Long id) {
         log.debug("Request to get Country : {}", id);
         Country country = countryRepository.findOne(id);
@@ -71,5 +71,12 @@ public class CountryServiceImpl implements CountryService{
     public void delete(Long id) {
         log.debug("Request to delete Country : {}", id);
         countryRepository.delete(id);
+    }
+
+    @Override
+    public List<Country> findAll() {
+        log.debug("Request to get all Countries");
+        List<Country> result = countryRepository.findAll();
+        return result;
     }
 }

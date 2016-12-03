@@ -8,7 +8,6 @@
 
             <div>
                 <h2 data-translate="moviesApp.movie.home.title" class="title_center">Movies</h2>
-                <jhi-alert></jhi-alert>
                 <div class="table-responsive">
                     <table class="jh-table table table-striped">
                         <thead>
@@ -39,12 +38,25 @@
                                 <td>{{movie.description}}</td>
                                 <td>{{movie.ageRating}}</td>
                                 <td class="text-right">
-                                    <div class="btn-group flex-btn-group-container">
+                                    <div class="btn-group flex-btn-group-container" ng-switch="vm.checkMovie({id:movie.id})">
                                         <button type="submit"
                                                 ui-sref="movie-detail({id:movie.id})"
-                                                class="btn btn-raised btn-primary btn-sm">
+                                                class="btn btn-raised btn-default btn-sm">
                                             <span class="glyphicon glyphicon-eye-open"></span>
-                                            <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                                        </button>
+                                        <button type="submit"
+                                                has-authority="ROLE_USER"
+                                                ng-click="vm.addFollower({id:movie.id})"
+                                                ng-switch-when="false"
+                                                class="btn btn-raised btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-heart"></span>
+                                        </button>
+                                        <button type="submit"
+                                                has-authority="ROLE_USER"
+                                                ng-click="vm.removeFollower({id:movie.id})"
+                                                ng-switch-when="true"
+                                                class="btn btn-raised btn-success btn-sm">
+                                            <span class="glyphicon glyphicon-heart"></span>
                                         </button>
                                     </div>
                                 </td>

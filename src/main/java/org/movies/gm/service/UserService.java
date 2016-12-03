@@ -254,9 +254,14 @@ public class UserService {
      *  @return the entity
      */
     @Transactional(readOnly = true)
-    public User findOne(Long id) {
+    public Optional<User> findOne(Long id) {
         log.debug("Request to get user : {}", id);
-        User user = userRepository.findOneWithEagerRelationships(id);
-        return user;
+        return userRepository.findOneWithEagerRelationships(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<User> findOneByLogin(String login) {
+        log.debug("Request to get user : {}", login);
+        return userRepository.findOneWithEagerRelationshipsByLogin(login);
     }
 }

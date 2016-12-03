@@ -2,7 +2,9 @@ package org.movies.gm.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import org.movies.gm.domain.Movie;
+import org.movies.gm.domain.User;
 import org.movies.gm.service.MovieService;
+import org.movies.gm.service.UserService;
 import org.movies.gm.web.rest.util.HeaderUtil;
 import org.movies.gm.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -20,6 +22,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing Movie.
@@ -29,9 +32,12 @@ import java.util.Optional;
 public class MovieResource {
 
     private final Logger log = LoggerFactory.getLogger(MovieResource.class);
-        
+
     @Inject
     private MovieService movieService;
+
+    @Inject
+    private UserService userService;
 
     /**
      * POST  /movies : Create a new movie.
@@ -124,4 +130,39 @@ public class MovieResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("movie", id.toString())).build();
     }
 
+    @PostMapping("/movies/followers/{movieID}/{userLogin}")
+    @Timed
+    public ResponseEntity<Movie> addFollower(@PathVariable Long movieID, @PathVariable String userLogin){
+        log.debug("REST request to add follower {" + userLogin + "} to movie {" + movieID + "}");
+        if (movieID != null && !userLogin.isEmpty()) {
+            Optional<User> requestedUser = userService.getUserWithAuthoritiesByLogin(userLogin);
+            Movie result = movieService.addFollower(movieID, requestedUser.get().getId());
+            return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityUpdateAlert("movie", result.getId().toString()))
+                .body(result);
+        }
+        return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("movie", "movie || user not exist", "Movie and User IDs should be valid!")).body(null);
+    }
+
+    @DeleteMapping("/movies/followers/{movieID}/{userLogin}")
+    @Timed
+    public ResponseEntity<Movie> removeFollower(@PathVariable Long movieID, @PathVariable String userLogin){
+        log.debug("REST request to remove follower {" + userLogin + "} from movie {" + movieID + "}");
+        if (movieID != null && !userLogin.isEmpty()) {
+            Optional<User> requestedUser = userService.getUserWithAuthoritiesByLogin(userLogin);
+            Movie result = movieService.removeFollower(movieID, requestedUser.get().getId());
+            return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityDeletionAlert("movie", result.getId().toString()))
+                .body(result);
+        }
+        return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("movie", "movie || user not exist", "Movie and User IDs should be valid!")).body(null);
+    }
+
+    @GetMapping("/movies/{id}/followers")
+    @Timed
+    public ResponseEntity<Set<User>> getMovieFollowers(@PathVariable Long id){
+        log.debug("REST request to get movie {" + id + "} followers");
+        Set<User> followers = movieService.getMovieFollowers(id);
+        return new ResponseEntity<>(followers, HttpStatus.OK);
+    }
 }

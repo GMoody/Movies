@@ -21,7 +21,7 @@ import java.util.List;
 public class DirectorServiceImpl implements DirectorService{
 
     private final Logger log = LoggerFactory.getLogger(DirectorServiceImpl.class);
-    
+
     @Inject
     private DirectorRepository directorRepository;
 
@@ -39,13 +39,13 @@ public class DirectorServiceImpl implements DirectorService{
 
     /**
      *  Get all the directors.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<Director> findAll(Pageable pageable) {
-        log.debug("Request to get all Directors");
+        log.debug("Request to get all Directors by page");
         Page<Director> result = directorRepository.findAll(pageable);
         return result;
     }
@@ -56,7 +56,7 @@ public class DirectorServiceImpl implements DirectorService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Director findOne(Long id) {
         log.debug("Request to get Director : {}", id);
         Director director = directorRepository.findOne(id);
@@ -71,5 +71,12 @@ public class DirectorServiceImpl implements DirectorService{
     public void delete(Long id) {
         log.debug("Request to delete Director : {}", id);
         directorRepository.delete(id);
+    }
+
+    @Override
+    public List<Director> findAll() {
+        log.debug("Request to get all Directors");
+        List<Director> result = directorRepository.findAll();
+        return result;
     }
 }

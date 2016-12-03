@@ -21,7 +21,7 @@ import java.util.List;
 public class WriterServiceImpl implements WriterService{
 
     private final Logger log = LoggerFactory.getLogger(WriterServiceImpl.class);
-    
+
     @Inject
     private WriterRepository writerRepository;
 
@@ -39,13 +39,13 @@ public class WriterServiceImpl implements WriterService{
 
     /**
      *  Get all the writers.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<Writer> findAll(Pageable pageable) {
-        log.debug("Request to get all Writers");
+        log.debug("Request to get all Writers by page");
         Page<Writer> result = writerRepository.findAll(pageable);
         return result;
     }
@@ -56,7 +56,7 @@ public class WriterServiceImpl implements WriterService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Writer findOne(Long id) {
         log.debug("Request to get Writer : {}", id);
         Writer writer = writerRepository.findOne(id);
@@ -71,5 +71,12 @@ public class WriterServiceImpl implements WriterService{
     public void delete(Long id) {
         log.debug("Request to delete Writer : {}", id);
         writerRepository.delete(id);
+    }
+
+    @Override
+    public List<Writer> findAll() {
+        log.debug("Request to get all Writers");
+        List<Writer> result = writerRepository.findAll();
+        return result;
     }
 }

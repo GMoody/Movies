@@ -29,7 +29,7 @@ import java.util.Optional;
 public class CountryResource {
 
     private final Logger log = LoggerFactory.getLogger(CountryResource.class);
-        
+
     @Inject
     private CountryService countryService;
 
@@ -90,6 +90,14 @@ public class CountryResource {
         Page<Country> page = countryService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/countries");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/countries/all")
+    @Timed
+    public ResponseEntity<List<Country>> getAllCountries(){
+        log.debug("REST request to get all Countries");
+        List<Country> countries = countryService.findAll();
+        return new ResponseEntity<>(countries, HttpStatus.OK);
     }
 
     /**

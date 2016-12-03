@@ -21,7 +21,7 @@ public interface DirectorService {
 
     /**
      *  Get all the directors.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -41,4 +41,6 @@ public interface DirectorService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<Director> findAll();
 }

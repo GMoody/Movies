@@ -29,7 +29,7 @@ import java.util.Optional;
 public class WriterResource {
 
     private final Logger log = LoggerFactory.getLogger(WriterResource.class);
-        
+
     @Inject
     private WriterService writerService;
 
@@ -90,6 +90,14 @@ public class WriterResource {
         Page<Writer> page = writerService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/writers");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/writers/all")
+    @Timed
+    public ResponseEntity<List<Writer>> getAllWriters(){
+        log.debug("REST request to get all Writers");
+        List<Writer> writers = writerService.findAll();
+        return new ResponseEntity<>(writers, HttpStatus.OK);
     }
 
     /**

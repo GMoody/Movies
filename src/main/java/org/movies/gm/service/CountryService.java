@@ -21,7 +21,7 @@ public interface CountryService {
 
     /**
      *  Get all the countries.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -41,4 +41,6 @@ public interface CountryService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<Country> findAll();
 }

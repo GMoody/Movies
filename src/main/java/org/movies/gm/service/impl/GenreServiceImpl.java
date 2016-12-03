@@ -21,7 +21,7 @@ import java.util.List;
 public class GenreServiceImpl implements GenreService{
 
     private final Logger log = LoggerFactory.getLogger(GenreServiceImpl.class);
-    
+
     @Inject
     private GenreRepository genreRepository;
 
@@ -39,13 +39,13 @@ public class GenreServiceImpl implements GenreService{
 
     /**
      *  Get all the genres.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<Genre> findAll(Pageable pageable) {
-        log.debug("Request to get all Genres");
+        log.debug("Request to get all Genres by page");
         Page<Genre> result = genreRepository.findAll(pageable);
         return result;
     }
@@ -56,7 +56,7 @@ public class GenreServiceImpl implements GenreService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Genre findOne(Long id) {
         log.debug("Request to get Genre : {}", id);
         Genre genre = genreRepository.findOne(id);
@@ -71,5 +71,12 @@ public class GenreServiceImpl implements GenreService{
     public void delete(Long id) {
         log.debug("Request to delete Genre : {}", id);
         genreRepository.delete(id);
+    }
+
+    @Override
+    public List<Genre> findAll() {
+        log.debug("Request to get all Genres");
+        List<Genre> result = genreRepository.findAll();
+        return result;
     }
 }

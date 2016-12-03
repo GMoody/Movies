@@ -13,11 +13,11 @@
         vm.movie = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.directors = Director.query();
-        vm.writers = Writer.query();
-        vm.genres = Genre.query();
-        vm.actors = Actor.query();
-        vm.countries = Country.query();
+        vm.directors = Director.getAll();
+        vm.writers = Writer.getAll();
+        vm.genres = Genre.getAll();
+        vm.actors = Actor.getAll();
+        vm.countries = Country.getAll();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

@@ -1,10 +1,11 @@
 package org.movies.gm.service;
 
 import org.movies.gm.domain.Movie;
+import org.movies.gm.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Service Interface for managing Movie.
@@ -21,7 +22,7 @@ public interface MovieService {
 
     /**
      *  Get all the movies.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -41,4 +42,8 @@ public interface MovieService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    Movie addFollower(Long movieID, Long userID);
+    Movie removeFollower(Long movieID, Long userID);
+    Set<User> getMovieFollowers(Long id);
 }
