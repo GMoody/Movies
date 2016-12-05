@@ -43,7 +43,7 @@ public interface MovieService {
      */
     void delete(Long id);
 
-    Movie addFollower(Long movieID, Long userID);
-    Movie removeFollower(Long movieID, Long userID);
+    Movie addCurrentFollower(Long movieID);
+    Movie removeCurrentFollower(Long movieID);
     Set<User> getMovieFollowers(Long id);
 }

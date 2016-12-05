@@ -20,13 +20,10 @@
             'save': { method:'POST' },
             'update': { method:'PUT' },
             'delete':{ method:'DELETE' },
-            'getUserMoviesByLogin': {
-                url: 'api/users/:login/movies',
+            'getCurrentUserFavourites': {
+                url: 'api/users/current/favourites',
                 method: 'GET',
-                isArray: true,
-                params: {
-                    login: "@login"
-                }
+                isArray: true
             }
         });
 

@@ -181,12 +181,12 @@ public class User extends AbstractAuditingEntity implements Serializable {
         return favouriteMovies;
     }
 
-    public User addFavouriteMovies(Movie movie) {
+    public User addFavouriteMovie(Movie movie) {
         favouriteMovies.add(movie);
         return this;
     }
 
-    public User removeFavouriteMovies(Movie movie) {
+    public User removeFavouriteMovie(Movie movie) {
         favouriteMovies.remove(movie);
         return this;
     }

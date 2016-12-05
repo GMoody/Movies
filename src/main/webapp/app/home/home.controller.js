@@ -10,21 +10,19 @@
     function HomeController($scope, $state, Movie, ParseLinks, AlertService, pagingParams, paginationConstants, Principal, LoginService, MovieFollowers, User) {
         var vm = this;
 
-        vm.loadPage = loadPage;
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
-        vm.transition = transition;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
+        vm.login = LoginService.open;
 
         vm.account = null;
         vm.userMovies = null;
         vm.isAuthenticated = null;
-        vm.login = LoginService.open;
+
+        vm.loadPage = loadPage;
+        vm.transition = transition;
         vm.register = register;
-
         vm.checkMovie = checkMovie;
-
-        // Buttons actions
         vm.addFollower = addFollower;
         vm.removeFollower = removeFollower;
 
@@ -39,10 +37,15 @@
             Principal.identity().then(function (account) {
                 vm.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated;
-                User.getUserMoviesByLogin({login: vm.account.login}, onReceive);
+
+                if(vm.account != null){
+                    User.getCurrentUserFavourites({}, onReceive);
+                }
+
                 function onReceive(movies) {
                     vm.userMovies = movies;
                 }
+
             });
         }
 
@@ -91,12 +94,12 @@
         }
 
         function addFollower(movie) {
-            MovieFollowers.addFollower({movieID: movie.id, userLogin: vm.account.login});
+            MovieFollowers.addCurrentFollower({movieID: movie.id});
             $state.reload();
         }
 
         function removeFollower(movie) {
-            MovieFollowers.removeFollower({movieID: movie.id, userLogin: vm.account.login});
+            MovieFollowers.removeCurrentFollower({movieID: movie.id});
             $state.reload();
         }
 

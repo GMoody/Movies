@@ -22,7 +22,8 @@
                 "sessions": "Sessions",
                 "login": "Sign in",
                 "logout": "Sign out",
-                "register": "Register"
+                "register": "Register",
+                "favourites": "Favourites"
             },
             "admin": {
                 "main": "Administration",

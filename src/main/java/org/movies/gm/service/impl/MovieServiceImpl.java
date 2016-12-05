@@ -4,6 +4,7 @@ import org.movies.gm.domain.Movie;
 import org.movies.gm.domain.User;
 import org.movies.gm.repository.MovieRepository;
 import org.movies.gm.repository.UserRepository;
+import org.movies.gm.security.SecurityUtils;
 import org.movies.gm.service.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,25 +81,25 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public Movie addFollower(Long movieID, Long userID) {
-        log.debug("Request to add follower {" + userID + "} to movie {" + movieID + "}");
+    public Movie addCurrentFollower(Long movieID) {
+        log.debug("Request to add current user to movie {" + movieID + "} as follower");
         Movie movie = movieRepository.findOneWithEagerRelationships(movieID);
-        Optional<User> user = userRepository.findOneWithEagerRelationships(userID);
-        if(!movie.getFollowers().contains(user.get())){
+        Optional<User> user = userRepository.findOneWithEagerRelationshipsByLogin(SecurityUtils.getCurrentUserLogin());
+        if(user.isPresent() && !movie.getFollowers().contains(user.get())){
             movie.addFollower(user.get());
-            user.get().addFavouriteMovies(movie);
+            user.get().addFavouriteMovie(movie);
         }
         return movie;
     }
 
     @Override
-    public Movie removeFollower(Long movieID, Long userID) {
-        log.debug("Request to remove follower {" + userID + "} from movie {" + movieID + "}");
+    public Movie removeCurrentFollower(Long movieID) {
+        log.debug("Request to remove current user from movie {" + movieID + "}");
         Movie movie = movieRepository.findOneWithEagerRelationships(movieID);
-        Optional<User> user = userRepository.findOneWithEagerRelationships(userID);
-        if(movie.getFollowers().contains(user.get())){
+        Optional<User> user = userRepository.findOneWithEagerRelationshipsByLogin(SecurityUtils.getCurrentUserLogin());
+        if(user.isPresent() && movie.getFollowers().contains(user.get())){
             movie.removeFollower(user.get());
-            user.get().removeFavouriteMovies(movie);
+            user.get().removeFavouriteMovie(movie);
         }
         return movie;
     }

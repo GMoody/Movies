@@ -260,8 +260,8 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<User> findOneByLogin(String login) {
-        log.debug("Request to get user : {}", login);
-        return userRepository.findOneWithEagerRelationshipsByLogin(login);
+    public Optional<User> getCurrentEagerUser(){
+        log.debug("Request to get current user");
+        return userRepository.findOneWithEagerRelationshipsByLogin(SecurityUtils.getCurrentUserLogin());
     }
 }

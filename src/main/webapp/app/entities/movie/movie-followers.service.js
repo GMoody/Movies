@@ -10,20 +10,18 @@
         var resourceUrl =  'api/movies/followers/';
 
         return $resource(resourceUrl, {}, {
-            'addFollower': {
-                url: '/api/movies/followers/:movieID/:userLogin',
+            'addCurrentFollower': {
+                url: '/api/movies/:movieID/followers/add',
                 method: 'POST',
                 params:{
-                    movieID:'@movieID',
-                    userLogin: '@userLogin'
+                    movieID:'@movieID'
                 }
             },
-            'removeFollower': {
-                url: '/api/movies/followers/:movieID/:userLogin',
+            'removeCurrentFollower': {
+                url: '/api/movies/:movieID/followers/remove',
                 method: 'DELETE',
                 params:{
-                    movieID:'@movieID',
-                    userLogin: '@userLogin'
+                    movieID:'@movieID'
                 }
             },
             'getMovieFollowers': {
