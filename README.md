@@ -86,6 +86,9 @@ For more information refer to [Using Docker and Docker-Compose][], this page als
 
 To set up a CI environment, consult the [Setting up Continuous Integration][] page.
 
+## TODO
+1. Sorting in movie creation dialog for director, writer, actor, country
+
 [JHipster Homepage and latest documentation]: https://jhipster.github.io
 [JHipster 3.11.0 archive]: https://jhipster.github.io/documentation-archive/v3.11.0
 
