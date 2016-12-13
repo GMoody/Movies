@@ -5,9 +5,9 @@
         .module('moviesApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', '$state', 'Movie', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants', 'Principal', 'LoginService', 'MovieFollowers', 'User'];
+    HomeController.$inject = ['$scope', '$state', 'Movie', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants', 'Principal', 'LoginService', 'Favourites'];
 
-    function HomeController($scope, $state, Movie, ParseLinks, AlertService, pagingParams, paginationConstants, Principal, LoginService, MovieFollowers, User) {
+    function HomeController($scope, $state, Movie, ParseLinks, AlertService, pagingParams, paginationConstants, Principal, LoginService, Favourites) {
         var vm = this;
 
         vm.predicate = pagingParams.predicate;
@@ -39,7 +39,7 @@
                 vm.isAuthenticated = Principal.isAuthenticated;
 
                 if(vm.account != null){
-                    User.getCurrentUserFavourites({}, onReceive);
+                    Favourites.getCurrentUserFavourites({}, onReceive);
                 }
 
                 function onReceive(movies) {
@@ -94,12 +94,12 @@
         }
 
         function addFollower(movie) {
-            MovieFollowers.addCurrentFollower({movieID: movie.id});
+            Favourites.addCurrentFollower({movieID: movie.id});
             $state.reload();
         }
 
         function removeFollower(movie) {
-            MovieFollowers.removeCurrentFollower({movieID: movie.id});
+            Favourites.removeCurrentFollower({movieID: movie.id});
             $state.reload();
         }
 

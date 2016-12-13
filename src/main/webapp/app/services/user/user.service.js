@@ -9,7 +9,7 @@
 
     function User ($resource) {
         var service = $resource('api/users/:login', {}, {
-            'query': {method: 'GET', isArray: true},
+            'query': { method: 'GET', isArray: true },
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -17,14 +17,9 @@
                     return data;
                 }
             },
-            'save': { method:'POST' },
-            'update': { method:'PUT' },
-            'delete':{ method:'DELETE' },
-            'getCurrentUserFavourites': {
-                url: 'api/users/current/favourites',
-                method: 'GET',
-                isArray: true
-            }
+            'save':   { method:'POST'   },
+            'update': { method:'PUT'    },
+            'delete': { method:'DELETE' }
         });
 
         return service;
