@@ -84,6 +84,12 @@
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
                         <li ui-sref-active="active" ng-switch-when="true">
+                            <a ui-sref="favourites" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-heart"></span>&nbsp;
+                                <span data-translate="global.menu.account.favourites">Favourites</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="settings" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-wrench"></span>&nbsp;
                                 <span data-translate="global.menu.account.settings">Settings</span>
