@@ -55,6 +55,13 @@
             "otherEntityField": "title",
             "ownerSide": true,
             "otherEntityRelationshipName": "movie"
+        },
+        {
+            "relationshipName": "follower",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "favouriteMovie"
         }
     ],
     "fields": [

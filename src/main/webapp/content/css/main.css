@@ -1,5 +1,4 @@
 body {
-    background: #fafafa;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
@@ -293,6 +292,38 @@ entity tables helpers
     cursor: pointer;
 }
 
+@media screen and (min-width: 1200px){
+    .jh-table > thead > tr > th {
+        width: 1px;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .jh-table > tbody > tr > td:nth-child(3){
+        text-align: center;
+    }
+    .jh-table > tbody > tr > td:nth-child(5){
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .jh-table > thead > tr > th {
+        width: 77px;
+    }
+}
+
+@media screen and (max-width: 991px){
+    .jh-table > thead > tr > th:nth-child(4){
+        display: none;
+    }
+
+    .jh-table > tbody > tr > td:nth-child(4){
+        display: none;
+    }
+}
+
+
 /* ==========================================================================
 entity detail page css
 ========================================================================== */
@@ -340,6 +371,11 @@ Fix error field display
 
 /* jhipster-needle-css-add-main JHipster will add new css style */
 
+@media screen and (max-width: 768px) {
+    .toolbox{
+        margin-bottom: 20px;
+    }
+}
 
 .title_center{
     text-align: center;
@@ -357,4 +393,10 @@ Fix error field display
 
 .pad_top{
     margin-top: 15px;
+}
+
+.toolbox{
+    height: 30px;
+    width: 100%;
+    margin-bottom: 20px;
 }

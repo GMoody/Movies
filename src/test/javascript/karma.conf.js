@@ -26,6 +26,7 @@ module.exports = function (config) {
             'src/main/webapp/bower_components/jquery/dist/jquery.js',
             'src/main/webapp/bower_components/messageformat/messageformat.js',
             'src/main/webapp/bower_components/json3/lib/json3.js',
+            'src/main/webapp/bower_components/lodash/dist/lodash.compat.js',
             'src/main/webapp/bower_components/arrive/src/arrive.js',
             'src/main/webapp/bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
             'src/main/webapp/bower_components/angular/angular.js',
@@ -48,6 +49,7 @@ module.exports = function (config) {
             'src/main/webapp/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
             'src/main/webapp/bower_components/bootstrap-material-design/dist/js/material.js',
             'src/main/webapp/bower_components/bootstrap-material-design/dist/js/ripples.js',
+            'src/main/webapp/bower_components/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js',
             'src/main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'src/main/webapp/app/app.module.js',

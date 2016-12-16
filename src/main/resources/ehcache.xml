@@ -37,6 +37,10 @@
            timeToLiveSeconds="3600">
     </cache>
 
+    <cache name="org.movies.gm.domain.User.favouriteMovies"
+           timeToLiveSeconds="3600">
+    </cache>
+
     <cache name="org.movies.gm.domain.Genre"
         timeToLiveSeconds="3600">
     </cache>
@@ -78,6 +82,10 @@
     </cache>
 
     <cache name="org.movies.gm.domain.Movie.countries"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.movies.gm.domain.Movie.followers"
         timeToLiveSeconds="3600">
     </cache>
 

@@ -5,9 +5,9 @@
         .module('moviesApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', '$state', 'Movie', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants', 'Principal', 'LoginService', 'Favourites'];
+    HomeController.$inject = ['$scope', '$state', 'Movie', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants', 'Principal', 'LoginService', 'Favourites', 'Genre'];
 
-    function HomeController($scope, $state, Movie, ParseLinks, AlertService, pagingParams, paginationConstants, Principal, LoginService, Favourites) {
+    function HomeController($scope, $state, Movie, ParseLinks, AlertService, pagingParams, paginationConstants, Principal, LoginService, Favourites, Genre) {
         var vm = this;
 
         vm.predicate = pagingParams.predicate;
@@ -31,6 +31,7 @@
         });
 
         getAccount();
+        setupDDM();
         loadAll();
 
         function getAccount() {
@@ -91,6 +92,13 @@
             function onError(error) {
                 AlertService.error(error.data.message);
             }
+
+            Genre.getAll({}, onReceiveGenres, onError);
+            function onReceiveGenres(data){
+                for(var i = 0; i < data.length; i++){
+                    $scope.DDMdata.push({id: data[i].id, title: data[i].title});
+                }
+            }
         }
 
         function addFollower(movie) {
@@ -111,6 +119,47 @@
                         return true;
                 }
                 return false;
+            }
+        }
+
+        function setupDDM() {
+            $scope.DDMlabel = { buttonDefaultText: 'Genres' };
+            $scope.DDMmodel = [];
+            $scope.DDMdata = [];
+
+            if($(window).width() < 768){
+                $scope.DDMsettings = {
+                    displayProp: 'title',
+                    smartButtonMaxItems: 0,
+                    selectionLimit: 3,
+                    scrollableHeight: '150px',
+                    scrollable: true,
+                    closeOnBlur: true,
+                    showUncheckAll: false,
+                    enableSearch: false
+                };
+            }else if($(window).width() > 768 && $(window).width() < 991){
+                $scope.DDMsettings = {
+                    displayProp: 'title',
+                    smartButtonMaxItems: 0,
+                    selectionLimit: 3,
+                    scrollableHeight: '300px',
+                    scrollable: true,
+                    closeOnBlur: true,
+                    showUncheckAll: false,
+                    enableSearch: false
+                };
+            }else {
+                $scope.DDMsettings = {
+                    displayProp: 'title',
+                    smartButtonMaxItems: 3,
+                    selectionLimit: 3,
+                    scrollableHeight: '300px',
+                    scrollable: true,
+                    closeOnBlur: true,
+                    showUncheckAll: false,
+                    enableSearch: true
+                };
             }
         }
     }

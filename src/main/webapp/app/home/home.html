@@ -8,12 +8,18 @@
 
             <div>
                 <h2 data-translate="moviesApp.movie.home.title" class="title_center">Movies</h2>
+                <div class="toolbox">
+                    <div ng-dropdown-multiselect=""
+                         options="DDMdata"
+                         selected-model="DDMmodel"
+                         extra-settings="DDMsettings"
+                         translation-texts="DDMlabel">
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="jh-table table table-striped">
                         <thead>
                             <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                                <!--<th jh-sort-by="id"><span data-translate="global.field.id">ID</span> -->
-                                    <!--<span class="glyphicon glyphicon-sort"></span></th>-->
                                 <th jh-sort-by="title"><span data-translate="moviesApp.movie.title">Title</span>
                                     <span class="glyphicon glyphicon-sort"></span></th>
                                 <th jh-sort-by="year"><span data-translate="moviesApp.movie.year">Year</span>
