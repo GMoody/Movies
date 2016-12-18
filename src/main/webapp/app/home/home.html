@@ -74,7 +74,7 @@
                     <jhi-item-count id="jhi-item-count" page="vm.page" total="vm.queryCount"
                                     items-per-page="vm.itemsPerPage"></jhi-item-count>
                 </div>
-                <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+                <uib-pager id="pager" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
             </div>
 
             <!--<p class="lead" data-translate="home.subtitle">This is your homepage</p>-->
