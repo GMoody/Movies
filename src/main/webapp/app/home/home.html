@@ -7,15 +7,7 @@
             <!--<h1 data-translate="home.title">Welcome, Java Hipster!</h1>-->
             <div>
                 <h2 data-translate="moviesApp.movie.home.title" class="title_center">Movies</h2>
-                <div class="toolbox">
-                    <div class="form-group">
-                        <label data-translate="moviesApp.movie.genre" for="genres">Genre</label>
-                        <select class="form-control genres" id="genres" name="genres"
-                                ng-model="vm.selectedGenre"
-                                ng-options="genre as genre.title for genre in vm.genres track by genre.id"
-                                ng-change="vm.genreSelected()"></select>
-                    </div>
-                </div>
+                <movies-filter></movies-filter>
                 <div class="table-responsive">
                     <table class="jh-table table table-striped">
                         <thead>

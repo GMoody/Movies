@@ -5,9 +5,9 @@
         .module('moviesApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', '$state', 'Movie', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants', 'Principal', 'LoginService', 'Favourites', 'Genre', '$translate', '$rootScope'];
+    HomeController.$inject = ['$scope', '$state', 'Movie', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants', 'Principal', 'LoginService', 'Favourites', '$rootScope'];
 
-    function HomeController($scope, $state, Movie, ParseLinks, AlertService, pagingParams, paginationConstants, Principal, LoginService, Favourites, Genre, $translate, $rootScope) {
+    function HomeController($scope, $state, Movie, ParseLinks, AlertService, pagingParams, paginationConstants, Principal, LoginService, Favourites, $rootScope) {
         var vm = this;
 
         vm.predicate = pagingParams.predicate;
@@ -18,7 +18,6 @@
         vm.account = null;
         vm.userMovies = null;
         vm.isAuthenticated = null;
-        vm.selectedGenre = null;
 
         vm.loadPage = loadPage;
         vm.transition = transition;
@@ -26,14 +25,25 @@
         vm.checkMovie = checkMovie;
         vm.addFollower = addFollower;
         vm.removeFollower = removeFollower;
-        vm.genreSelected = genreSelected;
 
         $scope.$on('authenticationSuccess', function () {
             getAccount();
         });
+        $rootScope.$on('genreSelected', function (event, data) {
+            if(data.id == -1){
+                loadAll();
+                vm.transition = transition;
+            }else {
+                Movie.getByGenre({id: data.id}, onReceiveMovies);
+                vm.transition = null;
+            }
+            function onReceiveMovies(data){
+                vm.movies = data;
+            }
+        });
 
-        getAccount();
         loadAll();
+        getAccount();
 
         function getAccount() {
             Principal.identity().then(function (account) {
@@ -80,13 +90,6 @@
             function onError(error) {
                 AlertService.error(error.data.message);
             }
-            Genre.getAll({}, onReceiveGenres, onError);
-            function onReceiveGenres(data){
-                data.sort(function(a,b) {return (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0);} );
-                vm.genres = [];
-                vm.genres.push({id: -1, title: "All"});
-                vm.genres = vm.genres.concat(data);
-            }
         }
         function addFollower(movie) {
             Favourites.addCurrentFollower({movieID: movie.id});
@@ -102,40 +105,6 @@
                     if(vm.userMovies[i].id == movie.id)
                         return true;
                 return false;
-        }
-        function genreSelected() {
-            if(vm.selectedGenre.id == -1){
-                loadAll();
-                elementsVisibility(true);
-            }else {
-                Movie.getByGenre({id: vm.selectedGenre.id}, onReceiveMovies);
-                elementsVisibility(false);
-            }
-            function onReceiveMovies(data){
-                vm.movies = data;
-            }
-        }
-        function elementsVisibility(visible) {
-            var counter = document.getElementById("jhi-item-count");
-            var glyphicons = document.getElementsByClassName("glyphicon glyphicon-sort");
-            var glyphicons2 = document.getElementsByClassName("glyphicon glyphicon-sort-by-attributes");
-            var pager = document.getElementById("pager");
-
-            if(visible){
-                if(glyphicons2.length != 0) glyphicons2[0].style.visibility = "visible";
-                counter.style.visibility = "visible";
-                pager.style.visibility = "visible";
-                vm.transition = transition;
-                for(var i = 0; i < glyphicons.length; i++)
-                    glyphicons[i].style.visibility = "visible";
-            } else {
-                if(glyphicons2.length != 0) glyphicons2[0].style.visibility = "hidden";
-                counter.style.visibility = "hidden";
-                pager.style.visibility = "hidden";
-                vm.transition = null;
-                for(var y = 0; y < glyphicons.length; y++)
-                    glyphicons[y].style.visibility = "hidden";
-            }
         }
     }
 })();
