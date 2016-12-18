@@ -5,15 +5,15 @@
         <!--</div>-->
         <div class="col-md-12">
             <!--<h1 data-translate="home.title">Welcome, Java Hipster!</h1>-->
-
             <div>
                 <h2 data-translate="moviesApp.movie.home.title" class="title_center">Movies</h2>
                 <div class="toolbox">
-                    <div ng-dropdown-multiselect=""
-                         options="DDMdata"
-                         selected-model="DDMmodel"
-                         extra-settings="DDMsettings"
-                         translation-texts="DDMlabel">
+                    <div class="form-group">
+                        <label data-translate="moviesApp.movie.genre" for="genres">Genre</label>
+                        <select class="form-control genres" id="genres" name="genres"
+                                ng-model="vm.selectedGenre"
+                                ng-options="genre as genre.title for genre in vm.genres track by genre.id"
+                                ng-change="vm.genreSelected()"></select>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -71,7 +71,7 @@
                     </table>
                 </div>
                 <div class="text-center">
-                    <jhi-item-count page="vm.page" total="vm.queryCount"
+                    <jhi-item-count id="jhi-item-count" page="vm.page" total="vm.queryCount"
                                     items-per-page="vm.itemsPerPage"></jhi-item-count>
                 </div>
                 <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>

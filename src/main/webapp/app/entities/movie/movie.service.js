@@ -20,7 +20,15 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'getByGenre': {
+                url: '/api/movies/genres/:id',
+                method: 'GET',
+                params:{
+                    id:'@id'
+                },
+                isArray: true
+            }
         });
     }
 })();

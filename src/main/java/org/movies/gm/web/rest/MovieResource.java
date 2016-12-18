@@ -2,8 +2,8 @@ package org.movies.gm.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import org.movies.gm.domain.Movie;
+import org.movies.gm.service.GenreService;
 import org.movies.gm.service.MovieService;
-import org.movies.gm.service.UserService;
 import org.movies.gm.web.rest.util.HeaderUtil;
 import org.movies.gm.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -21,6 +21,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing Movie.
@@ -35,7 +36,7 @@ public class MovieResource {
     private MovieService movieService;
 
     @Inject
-    private UserService userService;
+    private GenreService genreService;
 
     /**
      * POST  /movies : Create a new movie.
@@ -94,6 +95,15 @@ public class MovieResource {
         Page<Movie> page = movieService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/movies");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/movies/genres/{id}")
+    @Timed
+    public ResponseEntity<Set<Movie>> getMoviesByGenre(@PathVariable Long id)
+        throws URISyntaxException {
+        log.debug("REST request to get movies by genre id: " + id);
+        Set<Movie> moviesByGenre = genreService.findOne(id).getMovies();
+        return new ResponseEntity<>(moviesByGenre, HttpStatus.OK);
     }
 
     /**

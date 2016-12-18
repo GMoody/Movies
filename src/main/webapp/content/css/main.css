@@ -294,7 +294,7 @@ entity tables helpers
 
 @media screen and (min-width: 1200px){
     .jh-table > thead > tr > th {
-        width: 1px;
+        width: 50px;
     }
 }
 
@@ -309,7 +309,7 @@ entity tables helpers
 
 @media screen and (max-width: 1200px){
     .jh-table > thead > tr > th {
-        width: 77px;
+        width: 86px;
     }
 }
 
@@ -398,5 +398,9 @@ Fix error field display
 .toolbox{
     height: 30px;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 45px;
+}
+
+.genres{
+    width: 120px;
 }

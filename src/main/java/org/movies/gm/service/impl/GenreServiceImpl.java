@@ -1,14 +1,14 @@
 package org.movies.gm.service.impl;
 
-import org.movies.gm.service.GenreService;
 import org.movies.gm.domain.Genre;
 import org.movies.gm.repository.GenreRepository;
+import org.movies.gm.service.GenreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -59,7 +59,7 @@ public class GenreServiceImpl implements GenreService{
     @Transactional(readOnly = true)
     public Genre findOne(Long id) {
         log.debug("Request to get Genre : {}", id);
-        Genre genre = genreRepository.findOne(id);
+        Genre genre = genreRepository.findOneWithEagerRelationships(id);
         return genre;
     }
 
