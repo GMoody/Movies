@@ -46,4 +46,5 @@ public interface MovieService {
     Movie addCurrentFollower(Long movieID);
     Movie removeCurrentFollower(Long movieID);
     Set<User> getMovieFollowers(Long id);
+    Page<Movie> getMoviesByGenreId(Long id, Pageable pageable);
 }

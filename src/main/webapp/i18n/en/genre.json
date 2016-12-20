@@ -14,7 +14,7 @@
                 "question": "Are you sure you want to delete Genre {{ id }}?"
             },
             "detail": {
-                "title": "Genre:"
+                "title": "Genre"
             },
             "title": "Title",
             "movie": "Movie"

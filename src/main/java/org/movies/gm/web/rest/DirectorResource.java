@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,6 +98,7 @@ public class DirectorResource {
     public ResponseEntity<List<Director>> getAllDirectors(){
         log.debug("REST request to get all Directors");
         List<Director> directors = directorService.findAll();
+        directors.sort(Comparator.comparing(Director::getFirstName));
         return new ResponseEntity<>(directors, HttpStatus.OK);
     }
 

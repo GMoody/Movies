@@ -129,6 +129,7 @@
                                     duration: null,
                                     description: null,
                                     ageRating: null,
+                                    avatarURL: null,
                                     id: null
                                 };
                             }

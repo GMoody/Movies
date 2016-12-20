@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,6 +98,7 @@ public class CountryResource {
     public ResponseEntity<List<Country>> getAllCountries(){
         log.debug("REST request to get all Countries");
         List<Country> countries = countryService.findAll();
+        countries.sort(Comparator.comparing(Country::getTitle));
         return new ResponseEntity<>(countries, HttpStatus.OK);
     }
 

@@ -31,6 +31,10 @@
             ],
             "fieldValidateRulesMinlength": "3",
             "fieldValidateRulesMaxlength": "50"
+        },
+        {
+            "fieldName": "avatarURL",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20161123210720",

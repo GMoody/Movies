@@ -1,10 +1,13 @@
 package org.movies.gm.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -17,6 +20,8 @@ import java.util.Objects;
 @Entity
 @Table(name = "movie")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@NamedQuery(name = "Movie.findMoviesByGenre",
+    query = "select movie from Movie movie where ?1 member of movie.genres")
 public class Movie implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,6 +56,9 @@ public class Movie implements Serializable {
     @Max(value = 18)
     @Column(name = "age_rating", nullable = false)
     private Integer ageRating;
+
+    @Column(name = "avatar_url")
+    private String avatarURL;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -168,6 +176,14 @@ public class Movie implements Serializable {
 
     public void setAgeRating(Integer ageRating) {
         this.ageRating = ageRating;
+    }
+
+    public String getAvatarURL() {
+        return avatarURL;
+    }
+
+    public void setAvatarURL(String avatarURL) {
+        this.avatarURL = avatarURL;
     }
 
     public Set<Director> getDirectors() {

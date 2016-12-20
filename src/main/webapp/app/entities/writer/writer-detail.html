@@ -1,9 +1,12 @@
 
 <div>
-    <h2><span data-translate="moviesApp.writer.detail.title">Writer</span> {{vm.writer.firstName}} {{vm.writer.lastName}}</h2>
+    <h2><span data-translate="moviesApp.writer.detail.title">Writer</span></h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
+        <avatars item="vm.writer" dirclass="writer"></avatars>
+        <dd>
+        </dd>
         <dt><span data-translate="moviesApp.writer.firstName">First Name</span></dt>
         <dd>
             <span>{{vm.writer.firstName}}</span>

@@ -1,7 +1,9 @@
 package org.movies.gm.service.impl;
 
+import org.movies.gm.domain.Genre;
 import org.movies.gm.domain.Movie;
 import org.movies.gm.domain.User;
+import org.movies.gm.repository.GenreRepository;
 import org.movies.gm.repository.MovieRepository;
 import org.movies.gm.repository.UserRepository;
 import org.movies.gm.security.SecurityUtils;
@@ -30,7 +32,10 @@ public class MovieServiceImpl implements MovieService{
     private MovieRepository movieRepository;
 
     @Inject
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
+    @Inject
+    private GenreRepository genreRepository;
 
     /**
      * Save a movie.
@@ -108,5 +113,12 @@ public class MovieServiceImpl implements MovieService{
     public Set<User> getMovieFollowers(Long id) {
         log.debug("Request to get movie {" + id + "} followers");
         return movieRepository.findOneWithEagerRelationships(id).getFollowers();
+    }
+
+    @Override
+    public Page<Movie> getMoviesByGenreId(Long id, Pageable pageable) {
+        log.debug("Request to get movies by genre {" + id + "}");
+        Genre genre = genreRepository.findOne(id);
+        return movieRepository.findMoviesByGenre(genre, pageable);
     }
 }

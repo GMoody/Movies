@@ -24,26 +24,30 @@
             <column name="title" type="varchar(100)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="year" type="integer">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="duration" type="double">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="description" type="varchar(1000)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="age_rating" type="integer">
                 <constraints nullable="false" />
             </column>
-            
+
+            <column name="avatar_url" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-        
+
         <createTable tableName="movie_director">
             <column name="directors_id" type="bigint">
                 <constraints nullable="false"/>
@@ -54,7 +58,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="movies_id, directors_id" tableName="movie_director"/>
-        
+
         <createTable tableName="movie_writer">
             <column name="writers_id" type="bigint">
                 <constraints nullable="false"/>
@@ -65,7 +69,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="movies_id, writers_id" tableName="movie_writer"/>
-        
+
         <createTable tableName="movie_genre">
             <column name="genres_id" type="bigint">
                 <constraints nullable="false"/>
@@ -76,7 +80,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="movies_id, genres_id" tableName="movie_genre"/>
-        
+
         <createTable tableName="movie_actor">
             <column name="actors_id" type="bigint">
                 <constraints nullable="false"/>
@@ -87,7 +91,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="movies_id, actors_id" tableName="movie_actor"/>
-        
+
         <createTable tableName="movie_country">
             <column name="countries_id" type="bigint">
                 <constraints nullable="false"/>
@@ -98,6 +102,6 @@
         </createTable>
 
         <addPrimaryKey columnNames="movies_id, countries_id" tableName="movie_country"/>
-        
+
     </changeSet>
 </databaseChangeLog>

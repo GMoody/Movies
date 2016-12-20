@@ -46,21 +46,15 @@
             $rootScope.$broadcast("genreSelected", vm.selectedGenre);
         }
         function elementsVisibility(visible) {
-            var counter = document.getElementById("jhi-item-count");
             var glyphicons = document.getElementsByClassName("glyphicon glyphicon-sort");
             var glyphicons2 = document.getElementsByClassName("glyphicon glyphicon-sort-by-attributes");
-            var pager = document.getElementById("pager");
 
             if(visible){
                 if(glyphicons2.length != 0) glyphicons2[0].style.visibility = "visible";
-                counter.style.visibility = "visible";
-                pager.style.visibility = "visible";
                 for(var i = 0; i < glyphicons.length; i++)
                     glyphicons[i].style.visibility = "visible";
             } else {
                 if(glyphicons2.length != 0) glyphicons2[0].style.visibility = "hidden";
-                counter.style.visibility = "hidden";
-                pager.style.visibility = "hidden";
                 for(var y = 0; y < glyphicons.length; y++)
                     glyphicons[y].style.visibility = "hidden";
             }

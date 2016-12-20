@@ -1,20 +1,17 @@
 package org.movies.gm.web.rest;
 
-import org.movies.gm.MoviesApp;
-
-import org.movies.gm.domain.Actor;
-import org.movies.gm.repository.ActorRepository;
-import org.movies.gm.service.ActorService;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
+import org.movies.gm.MoviesApp;
+import org.movies.gm.domain.Actor;
+import org.movies.gm.repository.ActorRepository;
+import org.movies.gm.service.ActorService;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,6 +23,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -43,6 +41,9 @@ public class ActorResourceIntTest {
 
     private static final String DEFAULT_LAST_NAME = "AAAAAAAAAA";
     private static final String UPDATED_LAST_NAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_AVATAR_URL = "AAAAAAAAAA";
+    private static final String UPDATED_AVATAR_URL = "BBBBBBBBBB";
 
     @Inject
     private ActorRepository actorRepository;
@@ -109,6 +110,7 @@ public class ActorResourceIntTest {
         Actor testActor = actors.get(actors.size() - 1);
         assertThat(testActor.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
         assertThat(testActor.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
+        assertThat(testActor.getAvatarURL()).isEqualTo(DEFAULT_AVATAR_URL);
     }
 
     @Test
@@ -159,7 +161,8 @@ public class ActorResourceIntTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(actor.getId().intValue())))
                 .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME.toString())))
-                .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())));
+                .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
+                .andExpect(jsonPath("$.[*].avatarURL").value(hasItem(DEFAULT_AVATAR_URL.toString())));
     }
 
     @Test
@@ -174,7 +177,8 @@ public class ActorResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(actor.getId().intValue()))
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME.toString()))
-            .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()));
+            .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
+            .andExpect(jsonPath("$.avatarURL").value(DEFAULT_AVATAR_URL.toString()));
     }
 
     @Test
@@ -210,6 +214,7 @@ public class ActorResourceIntTest {
         Actor testActor = actors.get(actors.size() - 1);
         assertThat(testActor.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
         assertThat(testActor.getLastName()).isEqualTo(UPDATED_LAST_NAME);
+        assertThat(testActor.getAvatarURL()).isEqualTo(UPDATED_AVATAR_URL);
     }
 
     @Test

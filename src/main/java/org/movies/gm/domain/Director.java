@@ -35,6 +35,9 @@ public class Director implements Serializable {
     @Column(name = "last_name", length = 50, nullable = false)
     private String lastName;
 
+    @Column(name = "avatar_url")
+    private String avatarURL;
+
     @ManyToMany(mappedBy = "directors")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -72,6 +75,14 @@ public class Director implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getAvatarURL() {
+        return avatarURL;
+    }
+
+    public void setAvatarURL(String avatarURL) {
+        this.avatarURL = avatarURL;
     }
 
     public Set<Movie> getMovies() {

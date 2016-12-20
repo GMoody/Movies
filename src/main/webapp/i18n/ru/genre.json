@@ -14,10 +14,9 @@
                 "question": "Вы уверены что хотите удалить жанр {{ id }}?"
             },
             "detail": {
-                "title": "Жанр:"
+                "title": "Жанр"
             },
-            "title": "Title",
-            "movie": "Movie"
+            "title": "Название"
         }
     }
 }

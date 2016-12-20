@@ -34,11 +34,25 @@
                 loadAll();
                 vm.transition = transition;
             }else {
-                Movie.getByGenre({id: data.id}, onReceiveMovies);
+                Movie.getMoviesByGenre({
+                    page: pagingParams.page - 1,
+                    size: vm.itemsPerPage,
+                    sort: sort(),
+                    id: data.id
+                }, onReceiveMovies);
                 vm.transition = null;
             }
-            function onReceiveMovies(data){
+            function onReceiveMovies(data, headers){
+                vm.links = ParseLinks.parse(headers('link'));
+                vm.totalItems = headers('X-Total-Count');
+                vm.queryCount = vm.totalItems;
                 vm.movies = data;
+                vm.page = pagingParams.page;
+            }
+            function sort() {
+                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
+                if (vm.predicate !== 'id') result.push('id');
+                return result;
             }
         });
 
@@ -65,8 +79,7 @@
         function transition() {
             $state.transitionTo($state.$current, {
                 page: vm.page,
-                sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
-                search: vm.currentSearch
+                sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')
             });
         }
         function loadAll() {

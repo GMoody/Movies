@@ -1,12 +1,11 @@
 package org.movies.gm.web.rest.vm;
 
-import java.time.ZonedDateTime;
-
-import java.util.Set;
-
 import org.movies.gm.domain.User;
 import org.movies.gm.service.dto.UserDTO;
+
 import javax.validation.constraints.Size;
+import java.time.ZonedDateTime;
+import java.util.Set;
 
 /**
  * View Model extending the UserDTO, which is meant to be used in the user management UI.
@@ -43,9 +42,9 @@ public class ManagedUserVM extends UserDTO {
     }
 
     public ManagedUserVM(Long id, String login, String password, String firstName, String lastName,
-                         String email, boolean activated, String langKey, Set<String> authorities,
+                         String email, boolean activated, String langKey, Set<String> authorities, String avatarURL,
                          String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate) {
-        super(login, firstName, lastName, email, activated, langKey, authorities);
+        super(login, firstName, lastName, email, activated, langKey, authorities, avatarURL);
         this.id = id;
         this.createdBy = createdBy;
         this.createdDate = createdDate;

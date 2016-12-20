@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,6 +98,7 @@ public class WriterResource {
     public ResponseEntity<List<Writer>> getAllWriters(){
         log.debug("REST request to get all Writers");
         List<Writer> writers = writerService.findAll();
+        writers.sort(Comparator.comparing(Writer::getFirstName));
         return new ResponseEntity<>(writers, HttpStatus.OK);
     }
 

@@ -14,7 +14,7 @@
                 "question": "Are you sure you want to delete Director {{ id }}?"
             },
             "detail": {
-                "title": "Director:"
+                "title": "Director"
             },
             "firstName": "First Name",
             "lastName": "Last Name",

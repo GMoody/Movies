@@ -28,6 +28,11 @@
                     id:'@id'
                 },
                 isArray: true
+            },
+            'getMoviesByGenre': {
+                method: 'GET',
+                url: '/api/movies/genres/:id',
+                isArray: true
             }
         });
     }

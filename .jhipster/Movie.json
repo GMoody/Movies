@@ -117,6 +117,10 @@
             ],
             "fieldValidateRulesMin": "1",
             "fieldValidateRulesMax": "18"
+        },
+        {
+            "fieldName": "avatarURL",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20161123211242",

@@ -14,7 +14,7 @@
                 "question": "Are you sure you want to delete Writer {{ id }}?"
             },
             "detail": {
-                "title": "Writer:"
+                "title": "Writer"
             },
             "firstName": "First Name",
             "lastName": "Last Name",

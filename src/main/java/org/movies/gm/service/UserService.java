@@ -139,19 +139,20 @@ public class UserService {
         return user;
     }
 
-    public void updateUser(String firstName, String lastName, String email, String langKey) {
+    public void updateUser(String firstName, String lastName, String email, String langKey, String avatarURL) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(u -> {
             u.setFirstName(firstName);
             u.setLastName(lastName);
             u.setEmail(email);
             u.setLangKey(langKey);
+            u.setAvatarURL(avatarURL);
             userRepository.save(u);
             log.debug("Changed Information for User: {}", u);
         });
     }
 
     public void updateUser(Long id, String login, String firstName, String lastName, String email,
-        boolean activated, String langKey, Set<String> authorities) {
+        boolean activated, String langKey, Set<String> authorities, String avatarURL) {
 
         Optional.of(userRepository
             .findOne(id))
@@ -162,6 +163,7 @@ public class UserService {
                 u.setEmail(email);
                 u.setActivated(activated);
                 u.setLangKey(langKey);
+                u.setAvatarURL(avatarURL);
                 Set<Authority> managedAuthorities = u.getAuthorities();
                 managedAuthorities.clear();
                 authorities.stream().forEach(

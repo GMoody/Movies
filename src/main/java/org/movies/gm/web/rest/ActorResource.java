@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,6 +98,7 @@ public class ActorResource {
     public ResponseEntity<List<Actor>> getAllActors(){
         log.debug("REST request to get all Actors");
         List<Actor> actors = actorService.findAll();
+        actors.sort(Comparator.comparing(Actor::getFirstName));
         return new ResponseEntity<>(actors, HttpStatus.OK);
     }
 

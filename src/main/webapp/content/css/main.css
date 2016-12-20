@@ -292,55 +292,83 @@ entity tables helpers
     cursor: pointer;
 }
 
-@media screen and (min-width: 1200px){
-    .jh-table > thead > tr > th {
-        width: 50px;
-    }
-}
-
-@media screen and (min-width: 768px){
-    .jh-table > tbody > tr > td:nth-child(3){
-        text-align: center;
-    }
-    .jh-table > tbody > tr > td:nth-child(5){
-        text-align: center;
-    }
-}
-
 @media screen and (max-width: 1200px){
-    .jh-table > thead > tr > th {
+    .home > thead > tr > th {
         width: 86px;
     }
 }
 
+@media screen and (min-width: 1200px){
+    .home > thead > tr > th {
+        width: 50px;
+    }
+}
+
 @media screen and (max-width: 991px){
-    .jh-table > thead > tr > th:nth-child(4){
+    .home > thead > tr > th:nth-child(4){
         display: none;
     }
 
-    .jh-table > tbody > tr > td:nth-child(4){
+    .home > tbody > tr > td:nth-child(4){
         display: none;
     }
 }
 
+@media screen and (min-width: 992px){
+    .avatar{
+        width: 20% !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .toolbox{
+        margin-bottom: 20px;
+    }
+    .avatar{
+        width: 20%;
+    }
+    .avatar-div{
+        padding-bottom: 5px;
+    }
+    .home > tbody > tr > td:nth-child(3){
+        text-align: center;
+    }
+    .home > tbody > tr > td:nth-child(4){
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .home > tbody > tr > td:nth-child(3){
+        text-align: center;
+    }
+    .home > tbody > tr > td:nth-child(5){
+        text-align: center;
+    }
+
+    .avatar{
+        width: 26%;
+    }
+    .avatar-div{
+        padding-left: 85px;
+        padding-bottom: 10px;
+    }
+
+    .dl-horizontal.jh-entity-details > dt {
+        margin-bottom: 15px;
+    }
+    .dl-horizontal.jh-entity-details > dd {
+        border-bottom: 1px solid #eee;
+        padding-left: 180px;
+        margin-left: 0;
+    }
+}
 
 /* ==========================================================================
 entity detail page css
 ========================================================================== */
 .dl-horizontal.jh-entity-details > dd {
     margin-bottom: 15px;
-}
-
-@media screen and (min-width: 768px) {
-    .dl-horizontal.jh-entity-details > dt {
-        margin-bottom: 15px;
-    }
-
-    .dl-horizontal.jh-entity-details > dd {
-        border-bottom: 1px solid #eee;
-        padding-left: 180px;
-        margin-left: 0;
-    }
 }
 
 /* ==========================================================================
@@ -361,7 +389,6 @@ ui bootstrap tweaks
 }
 
 
-
 /* ==========================================================================
 Fix error field display
 ========================================================================== */
@@ -370,12 +397,6 @@ Fix error field display
 }
 
 /* jhipster-needle-css-add-main JHipster will add new css style */
-
-@media screen and (max-width: 768px) {
-    .toolbox{
-        margin-bottom: 20px;
-    }
-}
 
 .title_center{
     text-align: center;
@@ -403,4 +424,14 @@ Fix error field display
 
 .genres{
     width: 120px;
+}
+
+.user-settings-avatar{
+    text-align: center;
+    padding-top: 20px;
+}
+
+.movie-poster{
+    text-align: center;
+    padding-bottom: 10px;
 }

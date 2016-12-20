@@ -126,6 +126,7 @@
                             return {
                                 firstName: null,
                                 lastName: null,
+                                avatarURL: null,
                                 id: null
                             };
                         }

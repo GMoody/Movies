@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,6 +98,7 @@ public class GenreResource {
     public ResponseEntity<List<Genre>> getAllGenres(){
         log.debug("REST request to get all Genres");
         List<Genre> genres = genreService.findAll();
+        genres.sort(Comparator.comparing(Genre::getTitle));
         return new ResponseEntity<>(genres, HttpStatus.OK);
     }
 

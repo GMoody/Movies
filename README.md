@@ -88,10 +88,7 @@ To set up a CI environment, consult the [Setting up Continuous Integration][] pa
 
 ## TODO
 1. Sorting in movie creation dialog for director, writer, actor, country
-2. REST Pagebale for user.favouriteMovies get request [get-current-user-favourite-movies]
-3. Movie avatars [URLs]
-4. Home page Genre sorting function
-5. Actors, Directors, Writers avatars
+2. REST Pagebale for user.favouriteMovies get request
 
 [JHipster Homepage and latest documentation]: https://jhipster.github.io
 [JHipster 3.11.0 archive]: https://jhipster.github.io/documentation-archive/v3.11.0
