@@ -292,19 +292,7 @@ entity tables helpers
     cursor: pointer;
 }
 
-@media screen and (max-width: 1200px){
-    .home > thead > tr > th {
-        width: 86px;
-    }
-}
-
-@media screen and (min-width: 1200px){
-    .home > thead > tr > th {
-        width: 50px;
-    }
-}
-
-@media screen and (max-width: 991px){
+@media screen and (max-width: 1199px){
     .home > thead > tr > th:nth-child(4){
         display: none;
     }
@@ -312,40 +300,45 @@ entity tables helpers
     .home > tbody > tr > td:nth-child(4){
         display: none;
     }
+
+    .favourites > thead > tr > th:nth-child(4){
+        display: none;
+    }
+
+    .favourites > tbody > tr > td:nth-child(4){
+        display: none;
+    }
 }
 
-@media screen and (min-width: 992px){
+@media screen and (min-width: 1200px){
+    .home > thead > tr > th {
+        width: 50px;
+    }
+
+    .favourites > thead > tr > th {
+        width: 50px;
+    }
+}
+
+@media screen and (min-width: 992px) {
     .avatar{
         width: 20% !important;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .toolbox{
-        margin-bottom: 20px;
-    }
     .avatar{
-        width: 20%;
+        width: 18%;
     }
-    .avatar-div{
-        padding-bottom: 5px;
-    }
-    .home > tbody > tr > td:nth-child(3){
+
+    .movie-poster{
         text-align: center;
-    }
-    .home > tbody > tr > td:nth-child(4){
-        text-align: center;
+        padding-bottom: 10px;
+        width: 100%;
     }
 }
 
 @media screen and (min-width: 768px){
-    .home > tbody > tr > td:nth-child(3){
-        text-align: center;
-    }
-    .home > tbody > tr > td:nth-child(5){
-        text-align: center;
-    }
-
     .avatar{
         width: 26%;
     }
@@ -426,12 +419,11 @@ Fix error field display
     width: 120px;
 }
 
-.user-settings-avatar{
-    text-align: center;
-    padding-top: 20px;
-}
-
 .movie-poster{
     text-align: center;
     padding-bottom: 10px;
+}
+
+.favourites-title {
+    padding-bottom: 20px;
 }

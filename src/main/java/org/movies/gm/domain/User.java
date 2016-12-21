@@ -75,9 +75,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "reset_date", nullable = true)
     private ZonedDateTime resetDate = null;
 
-    @Column(name = "avatar_url")
-    private String avatarURL;
-
     @ManyToMany
     @JoinTable(name = "user_movie",
         joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "ID"),
@@ -178,14 +175,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setResetDate(ZonedDateTime resetDate) {
        this.resetDate = resetDate;
-    }
-
-    public String getAvatarURL() {
-        return avatarURL;
-    }
-
-    public void setAvatarURL(String avatarURL) {
-        this.avatarURL = avatarURL;
     }
 
     public Set<Movie> getFavouriteMovies() {

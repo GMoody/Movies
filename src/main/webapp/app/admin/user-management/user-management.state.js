@@ -97,8 +97,7 @@
                                 lastModifiedDate: null,
                                 resetDate: null,
                                 resetKey: null,
-                                authorities: null,
-                                avatarURL: null
+                                authorities: null
                             };
                         }
                     }
