@@ -6,14 +6,19 @@ import org.movies.gm.domain.User;
 import org.movies.gm.service.MovieService;
 import org.movies.gm.service.UserService;
 import org.movies.gm.web.rest.util.HeaderUtil;
+import org.movies.gm.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import java.util.Optional;
+import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -30,11 +35,12 @@ public class FavouritesResource {
 
     @GetMapping("/users/current/favourites")
     @Timed
-    public ResponseEntity<Set<Movie>> getCurrentUserFavourites(){
-        log.debug("REST request to get current user favourites");
-        Optional<User> user = userService.getCurrentEagerUser();
-        if(user.isPresent()) return new ResponseEntity<>(user.get().getFavouriteMovies(), HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<List<Movie>> getCurrentUserFavourites(Pageable pageable)
+        throws URISyntaxException {
+        log.debug("REST request to get current user favourites by page");
+        Page<Movie> page = movieService.getMoviesByCurrentUser(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/movies");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     @PostMapping("/movies/{movieID}/followers/add")

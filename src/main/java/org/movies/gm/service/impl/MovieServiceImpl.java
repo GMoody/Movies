@@ -121,4 +121,12 @@ public class MovieServiceImpl implements MovieService{
         Genre genre = genreRepository.findOne(id);
         return movieRepository.findMoviesByGenre(genre, pageable);
     }
+
+    @Override
+    public Page<Movie> getMoviesByCurrentUser(Pageable pageable) {
+        log.debug("Request to get movies by current user");
+        Optional<User> user = userRepository.findOneWithEagerRelationshipsByLogin(SecurityUtils.getCurrentUserLogin());
+        Page<Movie> moviePage = movieRepository.findMoviesByCurrentUser(user.get(), pageable);
+        return moviePage;
+    }
 }

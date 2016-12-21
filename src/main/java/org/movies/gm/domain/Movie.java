@@ -1,18 +1,15 @@
 package org.movies.gm.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Movie.
@@ -20,8 +17,12 @@ import java.util.Objects;
 @Entity
 @Table(name = "movie")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@NamedQuery(name = "Movie.findMoviesByGenre",
-    query = "select movie from Movie movie where ?1 member of movie.genres")
+@NamedQueries({
+    @NamedQuery(name = "Movie.findMoviesByGenre",
+        query = "select movie from Movie movie where ?1 member of movie.genres"),
+    @NamedQuery(name = "Movie.findMoviesByCurrentUser",
+        query = "select movie from Movie movie where ?1 member of movie.followers")
+})
 public class Movie implements Serializable {
 
     private static final long serialVersionUID = 1L;

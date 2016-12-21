@@ -1,5 +1,12 @@
 {
     "favourites": {
-        "title": "Favourites"
+        "title": "Favourites",
+        "labels": {
+            "title": "Title",
+            "year": "Year",
+            "duration": "Duration",
+            "description": "Description",
+            "rating": "Rating"
+        }
     }
 }

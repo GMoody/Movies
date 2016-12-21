@@ -2,6 +2,7 @@ package org.movies.gm.repository;
 
 import org.movies.gm.domain.Genre;
 import org.movies.gm.domain.Movie;
+import org.movies.gm.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,4 +24,6 @@ public interface MovieRepository extends JpaRepository<Movie,Long> {
     Movie findOneWithEagerRelationships(@Param("id") Long id);
 
     Page<Movie> findMoviesByGenre(@Param("genre")Genre genre, Pageable pageable);
+
+    Page<Movie> findMoviesByCurrentUser(@Param("user")User user, Pageable pageable);
 }
