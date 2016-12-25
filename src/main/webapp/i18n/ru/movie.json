@@ -24,6 +24,7 @@
             "director": "Режиссёр",
             "writer": "Сценарист",
             "genre": "Жанр",
+            "filter": "Фильтр",
             "actor": "Актёры",
             "country": "Страна",
             "favourites": {

@@ -411,8 +411,19 @@ Fix error field display
 
 .toolbox{
     height: 30px;
-    width: 100%;
-    margin-bottom: 45px;
+    width: 40%;
+    display: inline-block;
+}
+
+.filter-box{
+    height: 30px;
+    float: right;
+    width: 20%;
+    text-align: right;
+}
+
+.filter-box + .table-responsive {
+    margin-top: 45px;
 }
 
 .genres{
