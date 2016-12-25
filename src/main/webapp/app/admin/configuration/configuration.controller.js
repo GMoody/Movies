@@ -5,9 +5,9 @@
         .module('moviesApp')
         .controller('JhiConfigurationController', JhiConfigurationController);
 
-    JhiConfigurationController.$inject = ['$filter','JhiConfigurationService'];
+    JhiConfigurationController.$inject = ['JhiConfigurationService'];
 
-    function JhiConfigurationController (filter,JhiConfigurationService) {
+    function JhiConfigurationController (JhiConfigurationService) {
         var vm = this;
 
         vm.allConfiguration = null;

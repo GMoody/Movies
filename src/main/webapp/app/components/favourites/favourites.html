@@ -7,17 +7,27 @@
                     <table class="jh-table favourites table table-striped">
                         <thead>
                             <tr>
-                                <th><span data-translate="favourites.labels.title">Title</span></th>
-                                <th><span data-translate="favourites.labels.year">Year</span></th>
-                                <th><span data-translate="favourites.labels.duration">Duration</span></th>
-                                <th><span data-translate="favourites.labels.description">Description</span></th>
-                                <th><span data-translate="favourites.labels.rating">Age Rating</span></th>
+                                <th ng-click="predicate = 'title'; reverse=!reverse">
+                                    <span data-translate="favourites.labels.title">Title</span>
+                                    <span class="glyphicon glyphicon-sort"></span></th>
+                                <th ng-click="predicate = 'year'; reverse=!reverse">
+                                    <span data-translate="favourites.labels.year">Year</span>
+                                    <span class="glyphicon glyphicon-sort"></span></th>
+                                <th ng-click="predicate = 'duration'; reverse=!reverse">
+                                    <span data-translate="favourites.labels.duration">Duration</span>
+                                    <span class="glyphicon glyphicon-sort"></span></th>
+                                <th ng-click="predicate = 'description'; reverse=!reverse">
+                                    <span data-translate="favourites.labels.description">Description</span>
+                                    <span class="glyphicon glyphicon-sort"></span></th>
+                                <th ng-click="predicate = 'rating'; reverse=!reverse">
+                                    <span data-translate="favourites.labels.rating">Age Rating</span>
+                                    <span class="glyphicon glyphicon-sort"></span></th>
                                 <th></th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr ng-repeat="movie in vm.favourites track by movie.id">
+                            <tr ng-repeat="movie in vm.favourites | orderBy:predicate:reverse">
                                 <td>{{movie.title}}</td>
                                 <td>{{movie.year}}</td>
                                 <td>{{movie.duration}}</td>
