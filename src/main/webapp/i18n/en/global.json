@@ -84,6 +84,15 @@
         },
         "ribbon": {
             "dev": "Development"
+        },
+        "labels": {
+            "title": "Title",
+            "year": "Year",
+            "duration": "Duration",
+            "description": "Description",
+            "rating": "Rating",
+            "genre": "Genre",
+            "filter": "Filter"
         }
     },
     "entity": {

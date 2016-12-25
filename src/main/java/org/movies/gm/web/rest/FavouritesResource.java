@@ -43,6 +43,16 @@ public class FavouritesResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/users/current/favourites/genres/{id}")
+    @Timed
+    public ResponseEntity<List<Movie>> getCurrentUserFavouritesByGenre(@PathVariable Long id, Pageable pageable)
+        throws URISyntaxException {
+        log.debug("REST request to get current user favourites by genre and page");
+        Page<Movie> page = movieService.getMoviesByCurrentUserAndGenre(id, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/movies");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
     @PostMapping("/movies/{movieID}/followers/add")
     @Timed
     public ResponseEntity<Movie> addCurrentFollower(@PathVariable Long movieID){

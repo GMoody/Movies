@@ -48,4 +48,5 @@ public interface MovieService {
     Set<User> getMovieFollowers(Long id);
     Page<Movie> getMoviesByGenreId(Long id, Pageable pageable);
     Page<Movie> getMoviesByCurrentUser(Pageable pageable);
+    Page<Movie> getMoviesByCurrentUserAndGenre(Long id, Pageable pageable);
 }

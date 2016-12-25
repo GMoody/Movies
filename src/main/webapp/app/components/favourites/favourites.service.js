@@ -36,6 +36,14 @@
                 url: 'api/users/current/favourites',
                 method: 'GET',
                 isArray: true
+            },
+            'getCurrentUserFavouritesAndGenre': {
+                url: 'api/users/current/favourites/genres/:id',
+                params:{
+                    id: "@id"
+                },
+                method: 'GET',
+                isArray: true
             }
         })
     }

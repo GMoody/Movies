@@ -84,6 +84,15 @@
         },
         "ribbon": {
             "dev": "Development"
+        },
+        "labels": {
+            "title": "Название",
+            "year": "Год",
+            "duration": "Продолжительность",
+            "description": "Описание",
+            "rating": "Рейтинг",
+            "genre": "Жанр",
+            "filter": "Фильтр"
         }
     },
     "entity": {

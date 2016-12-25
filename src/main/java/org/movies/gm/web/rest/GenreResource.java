@@ -102,6 +102,15 @@ public class GenreResource {
         return new ResponseEntity<>(genres, HttpStatus.OK);
     }
 
+    @GetMapping("/genres/used/all")
+    @Timed
+    public ResponseEntity<List<Genre>> getUsedGenres(){
+        log.debug("REST request to get used Genres");
+        List<Genre> genres = genreService.findUsedGenres();
+        genres.sort(Comparator.comparing(Genre::getTitle));
+        return new ResponseEntity<>(genres, HttpStatus.OK);
+    }
+
     /**
      * GET  /genres/:id : get the "id" genre.
      *

@@ -43,4 +43,6 @@ public interface GenreService {
     void delete(Long id);
 
     List<Genre> findAll();
+
+    List<Genre> findUsedGenres();
 }

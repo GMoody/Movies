@@ -21,7 +21,9 @@ import java.util.Set;
     @NamedQuery(name = "Movie.findMoviesByGenre",
         query = "select movie from Movie movie where ?1 member of movie.genres"),
     @NamedQuery(name = "Movie.findMoviesByCurrentUser",
-        query = "select movie from Movie movie where ?1 member of movie.followers")
+        query = "select movie from Movie movie where ?1 member of movie.followers"),
+    @NamedQuery(name = "Movie.findMoviesByCurrentUserAndGenre",
+        query = "select movie from Movie movie where ?1 member of movie.followers and ?2 member of movie.genres"),
 })
 public class Movie implements Serializable {
 

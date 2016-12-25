@@ -24,7 +24,6 @@
             "director": "Director",
             "writer": "Writer",
             "genre": "Genre",
-            "filter": "Filter",
             "actor": "Actor",
             "country": "Country",
             "favourites": {

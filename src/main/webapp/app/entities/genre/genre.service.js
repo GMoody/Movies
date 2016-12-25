@@ -25,6 +25,11 @@
                 method: 'GET',
                 url: 'api/genres/all',
                 isArray: true
+            },
+            'getUsed': {
+                method: 'GET',
+                url: 'api/genres/used/all',
+                isArray: true
             }
         });
     }

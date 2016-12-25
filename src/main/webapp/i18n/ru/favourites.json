@@ -1,12 +1,5 @@
 {
     "favourites": {
-        "title": "Избранное",
-        "labels": {
-            "title": "Название",
-            "year": "Год",
-            "duration": "Продолжительность",
-            "description": "Описание",
-            "rating": "Рейтинг"
-        }
+        "title": "Избранное"
     }
 }

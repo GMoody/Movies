@@ -26,4 +26,8 @@ public interface MovieRepository extends JpaRepository<Movie,Long> {
     Page<Movie> findMoviesByGenre(@Param("genre")Genre genre, Pageable pageable);
 
     Page<Movie> findMoviesByCurrentUser(@Param("user")User user, Pageable pageable);
+
+    Page<Movie> findMoviesByCurrentUserAndGenre(@Param("user") User user,
+                                                @Param("genre") Genre genre,
+                                                Pageable pageable);
 }

@@ -129,4 +129,13 @@ public class MovieServiceImpl implements MovieService{
         Page<Movie> moviePage = movieRepository.findMoviesByCurrentUser(user.get(), pageable);
         return moviePage;
     }
+
+    @Override
+    public Page<Movie> getMoviesByCurrentUserAndGenre(Long id, Pageable pageable) {
+        log.debug("Request to get movies by current user and genre");
+        Optional<User> user = userRepository.findOneWithEagerRelationshipsByLogin(SecurityUtils.getCurrentUserLogin());
+        Genre genre = genreRepository.findOne(id);
+        Page<Movie> moviePage = movieRepository.findMoviesByCurrentUserAndGenre(user.get(), genre, pageable);
+        return moviePage;
+    }
 }

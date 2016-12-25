@@ -32,7 +32,6 @@
         $rootScope.$on('genreSelected', function (event, data) {
             if(data.id == -1){
                 loadAll();
-                vm.transition = transition;
             }else {
                 Movie.getMoviesByGenre({
                     page: pagingParams.page - 1,
@@ -40,7 +39,6 @@
                     sort: sort(),
                     id: data.id
                 }, onReceiveMovies);
-                vm.transition = null;
             }
             function onReceiveMovies(data, headers){
                 vm.links = ParseLinks.parse(headers('link'));

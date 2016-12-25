@@ -2,6 +2,7 @@ package org.movies.gm.service.impl;
 
 import org.movies.gm.domain.Genre;
 import org.movies.gm.repository.GenreRepository;
+import org.movies.gm.repository.MovieRepository;
 import org.movies.gm.service.GenreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Service Implementation for managing Genre.
@@ -24,6 +28,9 @@ public class GenreServiceImpl implements GenreService{
 
     @Inject
     private GenreRepository genreRepository;
+
+    @Inject
+    private MovieRepository movieRepository;
 
     /**
      * Save a genre.
@@ -78,5 +85,15 @@ public class GenreServiceImpl implements GenreService{
         log.debug("Request to get all Genres");
         List<Genre> result = genreRepository.findAll();
         return result;
+    }
+
+    @Override
+    public List<Genre> findUsedGenres() {
+        log.debug("Request to get used Genres");
+        Set<Genre> genres = new HashSet<>();
+        movieRepository.findAllWithEagerRelationships().forEach(m -> genres.addAll(m.getGenres()));
+        List<Genre> returned = new ArrayList<>();
+        returned.addAll(genres);
+        return returned;
     }
 }
