@@ -26,7 +26,7 @@
 
         <tr ng-repeat="audit in vm.audits | filter:filter | orderBy:predicate:reverse" ng-hide="audit.filtered">
             <td><span>{{audit.timestamp| date:'medium'}}</span></td>
-            <td><small><a ui-sref="user-management-detail({login:audit.principal})">{{audit.principal}}</a></small></td>
+            <td><small>{{audit.principal}}</small></td>
             <td>{{audit.type}}</td>
             <td>
                 <span ng-show="audit.data.message">{{audit.data.message}}</span>

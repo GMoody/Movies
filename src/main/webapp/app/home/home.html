@@ -40,7 +40,7 @@
                         <tbody>
                             <tr ng-repeat="movie in vm.movies | filter:filter | orderBy:predicate:reverse">
                                 <!--<td><a ui-sref="movie-detail({id:movie.id})">{{movie.id}}</a></td>-->
-                                <td>{{movie.title}}</td>
+                                <td><a ui-sref="movie-detail({id:movie.id})">{{movie.title}}</a></td>
                                 <td>{{movie.year}}</td>
                                 <td>{{movie.duration}}</td>
                                 <td>{{movie.description}}</td>
