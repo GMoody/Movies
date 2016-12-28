@@ -5,11 +5,11 @@
             "title": "Current routes",
             "url": "URL",
             "service": "service",
-            "servers": "Available servers",
-            "error": "Warning: no server available!"
+            "servers": "Доступные сервера",
+            "error": "Предупреждение: нет доступного сервера!"
         },
         "refresh": {
-            "button": "Refresh"
+            "button": "Обновить"
         }
     }
 }

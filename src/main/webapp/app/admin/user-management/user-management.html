@@ -47,8 +47,8 @@
             </thead>
             <tbody>
             <tr ng-repeat="user in vm.users track by user.id">
-                <td><a ui-sref="user-management-detail({login:user.login})">{{user.id}}</a></td>
-                <td>{{user.login}}</td>
+                <td>{{user.id}}</td>
+                <td><a ui-sref="user-management-detail({login:user.login})">{{user.login}}</a></td>
                 <td>{{user.email}}</td>
                 <td>
                     <span class="label label-danger" ng-click="vm.setActive(user, true)" ng-show="!user.activated"

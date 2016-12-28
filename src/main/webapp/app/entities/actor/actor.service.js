@@ -8,6 +8,8 @@
 
     function Actor ($resource) {
         var resourceUrl =  'api/actors/:id';
+        var getAllActorsURL = "api/actors/all";
+        var getActorMovies = 'api/actors/:id/movies';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
@@ -23,8 +25,16 @@
             'update': { method:'PUT' },
             'getAll': {
                 method: 'GET',
-                url: 'api/actors/all',
+                url: getAllActorsURL,
                 isArray: true
+            },
+            'getActorMovies': {
+                method: 'GET',
+                url: getActorMovies,
+                isArray: true,
+                params: {
+                    id: '@id'
+                }
             }
         });
     }

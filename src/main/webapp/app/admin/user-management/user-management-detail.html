@@ -1,6 +1,6 @@
 <div>
-    <h2><span data-translate="userManagement.detail.title">User</span> "{{vm.user.login}}"</h2>
-    <dl class="dl-horizontal">
+    <h2 class="movie-poster"><span data-translate="userManagement.detail.title">User</span> "{{vm.user.login}}"</h2>
+    <dl class="dl-horizontal jh-entity-details">
         <dt><span data-translate="userManagement.login">Login</span></dt>
         <dd><span>{{vm.user.login}}</span></dd>
         <dt><span data-translate="userManagement.firstName">First Name</span></dt>
@@ -28,9 +28,8 @@
             </ul>
         </dd>
     </dl>
-    <button type="submit"
-            ui-sref="user-management"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    <button type="submit" back-button class="btn btn-raised btn-primary">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.back"> Back</span>
     </button>
 </div>

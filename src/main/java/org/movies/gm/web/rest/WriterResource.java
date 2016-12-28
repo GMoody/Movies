@@ -1,6 +1,7 @@
 package org.movies.gm.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import org.movies.gm.domain.Movie;
 import org.movies.gm.domain.Writer;
 import org.movies.gm.service.WriterService;
 import org.movies.gm.web.rest.util.HeaderUtil;
@@ -118,6 +119,13 @@ public class WriterResource {
                 result,
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/writers/{id}/movies")
+    @Timed
+    public ResponseEntity<List<Movie>> getWriterMovies(@PathVariable Long id) {
+        log.debug("REST request to get writer movies");
+        return new ResponseEntity<>(writerService.findWriterMovies(id), HttpStatus.OK);
     }
 
     /**

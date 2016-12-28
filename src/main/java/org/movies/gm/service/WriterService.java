@@ -1,5 +1,6 @@
 package org.movies.gm.service;
 
+import org.movies.gm.domain.Movie;
 import org.movies.gm.domain.Writer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,4 +44,5 @@ public interface WriterService {
     void delete(Long id);
 
     List<Writer> findAll();
+    List<Movie> findWriterMovies(Long id);
 }

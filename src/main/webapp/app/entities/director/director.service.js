@@ -8,6 +8,7 @@
 
     function Director ($resource) {
         var resourceUrl =  'api/directors/:id';
+        var getDirectorMovies = 'api/directors/:id/movies';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
@@ -25,6 +26,14 @@
                 method: 'GET',
                 url: 'api/directors/all',
                 isArray: true
+            },
+            'getDirectorMovies': {
+                method: 'GET',
+                url: getDirectorMovies,
+                isArray: true,
+                params: {
+                    id: '@id'
+                }
             }
         });
     }

@@ -8,6 +8,7 @@
 
     function Writer ($resource) {
         var resourceUrl =  'api/writers/:id';
+        var getWriterMovies = 'api/writers/:id/movies';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
@@ -25,6 +26,14 @@
                 method: 'GET',
                 url: 'api/writers/all',
                 isArray: true
+            },
+            'getWriterMovies': {
+                method: 'GET',
+                url: getWriterMovies,
+                isArray: true,
+                params: {
+                    id: '@id'
+                }
             }
         });
     }

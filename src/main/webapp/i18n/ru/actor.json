@@ -18,7 +18,8 @@
             },
             "firstName": "Имя",
             "lastName": "Фамилия",
-            "movie": "Movie"
+            "movie": "Фильм",
+            "movies": "Фильмы"
         }
     }
 }

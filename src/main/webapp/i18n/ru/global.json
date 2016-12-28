@@ -7,12 +7,12 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Сущности",
-                "genre": "Genre",
-                "country": "Country",
-                "actor": "Actor",
-                "director": "Director",
-                "writer": "Writer",
-                "movie": "Movie",
+                "genre": "Жанры",
+                "country": "Страны",
+                "actor": "Актёры",
+                "director": "Режиссёры",
+                "writer": "Сценаристы",
+                "movie": "Фильмы",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -27,7 +27,7 @@
             },
             "admin": {
                 "main": "Администрирование",
-                "userManagement": "Управление пользователями",
+                "userManagement": "Пользователи",
                 "tracker": "Трекер польз.",
                 "metrics": "Метрики",
                 "health": "Состояние",
@@ -83,7 +83,7 @@
             "id": "ID"
         },
         "ribbon": {
-            "dev": "Development"
+            "dev": "Разработка"
         },
         "labels": {
             "title": "Название",

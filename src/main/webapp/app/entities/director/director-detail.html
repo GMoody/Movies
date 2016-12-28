@@ -15,16 +15,21 @@
         <dd>
             <span>{{vm.director.lastName}}</span>
         </dd>
+        <dt><span data-translate="moviesApp.director.movies">Movies</span></dt>
+        <dd>
+            <span ng-repeat="movie in vm.director.movies">
+                <a ui-sref="movie-detail({id: movie.id})">{{movie.title}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
     </dl>
 
-    <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-raised btn-primary">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    <button type="submit" back-button class="btn btn-raised btn-primary">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.back"> Back</span>
     </button>
 
     <button has-authority="ROLE_ADMIN" type="button" ui-sref="director-detail.edit({id:vm.director.id})" class="btn btn-raised btn-primary">
-        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="glyphicon glyphicon-pencil"></span>&nbsp;
         <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
     </button>
 </div>

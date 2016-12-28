@@ -1,5 +1,6 @@
 package org.movies.gm.service.impl;
 
+import org.movies.gm.domain.Movie;
 import org.movies.gm.service.ActorService;
 import org.movies.gm.domain.Actor;
 import org.movies.gm.repository.ActorRepository;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -78,5 +80,14 @@ public class ActorServiceImpl implements ActorService{
         log.debug("Request to get all Actors");
         List<Actor> result = actorRepository.findAll();
         return result;
+    }
+
+    @Override
+    public List<Movie> findActorMovies(Long id) {
+        log.debug("Request to get Actor movies");
+        Actor actor = actorRepository.findOneWithEagerRelationships(id);
+        List<Movie> movies = new ArrayList<>();
+        movies.addAll(actor.getMovies());
+        return movies;
     }
 }

@@ -1,6 +1,7 @@
 package org.movies.gm.service;
 
 import org.movies.gm.domain.Actor;
+import org.movies.gm.domain.Movie;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -43,4 +44,5 @@ public interface ActorService {
     void delete(Long id);
 
     List<Actor> findAll();
+    List<Movie> findActorMovies(Long id);
 }

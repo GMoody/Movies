@@ -5,9 +5,9 @@
         .module('moviesApp')
         .controller('DirectorDetailController', DirectorDetailController);
 
-    DirectorDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Director', 'Movie'];
+    DirectorDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Director', '$window'];
 
-    function DirectorDetailController($scope, $rootScope, $stateParams, previousState, entity, Director, Movie) {
+    function DirectorDetailController($scope, $rootScope, $stateParams, previousState, entity, Director, $window) {
         var vm = this;
 
         vm.director = entity;
@@ -15,7 +15,17 @@
 
         var unsubscribe = $rootScope.$on('moviesApp:directorUpdate', function(event, result) {
             vm.director = result;
+            $window.location.reload();
         });
         $scope.$on('$destroy', unsubscribe);
+
+        getDirectorMovies();
+
+        function getDirectorMovies() {
+            Director.getDirectorMovies({id: vm.director.id}, onSuccess);
+            function onSuccess(data) {
+                vm.director.movies = data;
+            }
+        }
     }
 })();

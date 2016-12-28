@@ -18,7 +18,8 @@
             },
             "firstName": "First Name",
             "lastName": "Last Name",
-            "movie": "Movie"
+            "movie": "Movie",
+            "movies": "Movies"
         }
     }
 }

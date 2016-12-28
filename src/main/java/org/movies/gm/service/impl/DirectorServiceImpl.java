@@ -1,16 +1,18 @@
 package org.movies.gm.service.impl;
 
-import org.movies.gm.service.DirectorService;
 import org.movies.gm.domain.Director;
+import org.movies.gm.domain.Movie;
 import org.movies.gm.repository.DirectorRepository;
+import org.movies.gm.service.DirectorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -78,5 +80,14 @@ public class DirectorServiceImpl implements DirectorService{
         log.debug("Request to get all Directors");
         List<Director> result = directorRepository.findAll();
         return result;
+    }
+
+    @Override
+    public List<Movie> findDirectorMovies(Long id) {
+        log.debug("Request to get director movies");
+        Director director = directorRepository.findOneWithEagerRelationships(id);
+        List<Movie> movies = new ArrayList<>();
+        movies.addAll(director.getMovies());
+        return movies;
     }
 }

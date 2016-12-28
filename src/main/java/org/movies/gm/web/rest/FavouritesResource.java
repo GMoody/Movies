@@ -4,7 +4,6 @@ import com.codahale.metrics.annotation.Timed;
 import org.movies.gm.domain.Movie;
 import org.movies.gm.domain.User;
 import org.movies.gm.service.MovieService;
-import org.movies.gm.service.UserService;
 import org.movies.gm.web.rest.util.HeaderUtil;
 import org.movies.gm.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -28,9 +27,6 @@ public class FavouritesResource {
     private final Logger log = LoggerFactory.getLogger(FavouritesResource.class);
 
     @Inject
-    private UserService userService;
-
-    @Inject
     private MovieService movieService;
 
     @GetMapping("/users/current/favourites")
@@ -39,7 +35,7 @@ public class FavouritesResource {
         throws URISyntaxException {
         log.debug("REST request to get current user favourites by page");
         Page<Movie> page = movieService.getMoviesByCurrentUser(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/movies");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users/current/favourites");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
@@ -49,11 +45,11 @@ public class FavouritesResource {
         throws URISyntaxException {
         log.debug("REST request to get current user favourites by genre and page");
         Page<Movie> page = movieService.getMoviesByCurrentUserAndGenre(id, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/movies");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users/current/favourites/genres/");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
-    @PostMapping("/movies/{movieID}/followers/add")
+    @PostMapping("/movies/{movieID}/followers")
     @Timed
     public ResponseEntity<Movie> addCurrentFollower(@PathVariable Long movieID){
         log.debug("REST request to add current user to movie {" + movieID + "} as follower");
@@ -66,7 +62,7 @@ public class FavouritesResource {
         return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("movie", "movie not exist", "Movie ID should be valid!")).body(null);
     }
 
-    @DeleteMapping("/movies/{movieID}/followers/remove")
+    @DeleteMapping("/movies/{movieID}/followers")
     @Timed
     public ResponseEntity<Movie> removeFollower(@PathVariable Long movieID){
         log.debug("REST request to remove current user from movie {" + movieID + "}");

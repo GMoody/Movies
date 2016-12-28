@@ -2,6 +2,7 @@ package org.movies.gm.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import org.movies.gm.domain.Director;
+import org.movies.gm.domain.Movie;
 import org.movies.gm.service.DirectorService;
 import org.movies.gm.web.rest.util.HeaderUtil;
 import org.movies.gm.web.rest.util.PaginationUtil;
@@ -118,6 +119,13 @@ public class DirectorResource {
                 result,
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/directors/{id}/movies")
+    @Timed
+    public ResponseEntity<List<Movie>> getDirectorMovies(@PathVariable Long id) {
+        log.debug("REST request to get director movies");
+        return new ResponseEntity<>(directorService.findDirectorMovies(id), HttpStatus.OK);
     }
 
     /**
