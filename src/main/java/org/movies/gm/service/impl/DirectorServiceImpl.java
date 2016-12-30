@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service Implementation for managing Director.
@@ -35,8 +36,10 @@ public class DirectorServiceImpl implements DirectorService{
      */
     public Director save(Director director) {
         log.debug("Request to save Director : {}", director);
-        Director result = directorRepository.save(director);
-        return result;
+        Optional<Director> requested = directorRepository.
+            findByFirstNameAndLastNameIgnoreCase(director.getFirstName(), director.getLastName());
+        if(!requested.isPresent()) return directorRepository.save(director);
+        else return requested.get();
     }
 
     /**
@@ -72,6 +75,8 @@ public class DirectorServiceImpl implements DirectorService{
      */
     public void delete(Long id) {
         log.debug("Request to delete Director : {}", id);
+        Director director = directorRepository.findOneWithEagerRelationships(id);
+        director.getMovies().forEach(m -> m.getDirectors().remove(director));
         directorRepository.delete(id);
     }
 

@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Service Implementation for managing Genre.
@@ -40,8 +37,9 @@ public class GenreServiceImpl implements GenreService{
      */
     public Genre save(Genre genre) {
         log.debug("Request to save Genre : {}", genre);
-        Genre result = genreRepository.save(genre);
-        return result;
+        Optional<Genre> requested = genreRepository.findByTitleIgnoreCase(genre.getTitle());
+        if(!requested.isPresent()) return genreRepository.save(genre);
+        else return requested.get();
     }
 
     /**
@@ -77,6 +75,8 @@ public class GenreServiceImpl implements GenreService{
      */
     public void delete(Long id) {
         log.debug("Request to delete Genre : {}", id);
+        Genre genre = genreRepository.findOneWithEagerRelationships(id);
+        genre.getMovies().forEach(m -> m.getGenres().remove(genre));
         genreRepository.delete(id);
     }
 

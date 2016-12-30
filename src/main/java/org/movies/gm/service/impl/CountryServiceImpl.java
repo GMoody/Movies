@@ -1,17 +1,18 @@
 package org.movies.gm.service.impl;
 
-import org.movies.gm.service.CountryService;
 import org.movies.gm.domain.Country;
 import org.movies.gm.repository.CountryRepository;
+import org.movies.gm.service.CountryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service Implementation for managing Country.
@@ -33,8 +34,9 @@ public class CountryServiceImpl implements CountryService{
      */
     public Country save(Country country) {
         log.debug("Request to save Country : {}", country);
-        Country result = countryRepository.save(country);
-        return result;
+        Optional<Country> requested = countryRepository.findByTitleIgnoreCase(country.getTitle());
+        if(!requested.isPresent()) return countryRepository.save(country);
+        else return requested.get();
     }
 
     /**
@@ -70,6 +72,8 @@ public class CountryServiceImpl implements CountryService{
      */
     public void delete(Long id) {
         log.debug("Request to delete Country : {}", id);
+        Country country = countryRepository.findOneWithEagerRelationships(id);
+        country.getMovies().forEach(m -> m.getCountries().remove(country));
         countryRepository.delete(id);
     }
 

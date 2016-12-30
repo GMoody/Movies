@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service Implementation for managing Actor.
@@ -35,8 +36,10 @@ public class ActorServiceImpl implements ActorService{
      */
     public Actor save(Actor actor) {
         log.debug("Request to save Actor : {}", actor);
-        Actor result = actorRepository.save(actor);
-        return result;
+        Optional<Actor> requested = actorRepository.
+            findByFirstNameAndLastNameIgnoreCase(actor.getFirstName(), actor.getLastName());
+        if(!requested.isPresent()) return actorRepository.save(actor);
+        else return requested.get();
     }
 
     /**
@@ -72,6 +75,8 @@ public class ActorServiceImpl implements ActorService{
      */
     public void delete(Long id) {
         log.debug("Request to delete Actor : {}", id);
+        Actor actor = actorRepository.findOneWithEagerRelationships(id);
+        actor.getMovies().forEach(m -> m.getActors().remove(actor));
         actorRepository.delete(id);
     }
 

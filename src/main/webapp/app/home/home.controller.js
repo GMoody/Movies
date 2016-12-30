@@ -22,9 +22,7 @@
         vm.loadPage = loadPage;
         vm.transition = transition;
         vm.register = register;
-        vm.checkMovie = checkMovie;
-        vm.addFollower = addFollower;
-        vm.removeFollower = removeFollower;
+        vm.setFavourites = setFavourites;
 
         $scope.$on('authenticationSuccess', function () {
             getAccount();
@@ -46,6 +44,7 @@
                 vm.queryCount = vm.totalItems;
                 vm.movies = data;
                 vm.page = pagingParams.page;
+                makeSubscribers();
             }
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
@@ -64,6 +63,7 @@
                 if(vm.account != null) Favourites.getCurrentUserFavourites({}, onReceive);
                 function onReceive(movies) {
                     vm.userMovies = movies;
+                    makeSubscribers();
                 }
             });
         }
@@ -97,25 +97,29 @@
                 vm.queryCount = vm.totalItems;
                 vm.movies = data;
                 vm.page = pagingParams.page;
+                makeSubscribers();
             }
             function onError(error) {
                 AlertService.error(error.data.message);
             }
         }
-        function addFollower(movie) {
-            Favourites.addCurrentFollower({movieID: movie.id});
-            $state.reload();
+        function setFavourites(movie, isFavourite) {
+            if(isFavourite){
+                Favourites.addCurrentFollower({movieID: movie.id});
+                movie.subscribed = true;
+                vm.userMovies.push(movie);
+            } else {
+                Favourites.removeCurrentFollower({movieID: movie.id});
+                movie.subscribed = false;
+                vm.userMovies.splice(vm.userMovies.indexOf(movie), 1);
+            }
         }
-        function removeFollower(movie) {
-            Favourites.removeCurrentFollower({movieID: movie.id});
-            $state.reload();
-        }
-        function checkMovie(movie) {
-            if(vm.userMovies == null) return false;
-            else for(var i = 0; i < vm.userMovies.length; i++)
-                    if(vm.userMovies[i].id == movie.id)
-                        return true;
-                return false;
+        function makeSubscribers() {
+            var userMovies = [];
+            for(var i = 0; i < vm.userMovies.length; i++)
+                userMovies.push(vm.userMovies[i].id);
+            for(i = 0; i < vm.movies.length; i++)
+                vm.movies[i].subscribed = userMovies.indexOf(vm.movies[i].id) != -1;
         }
     }
 })();

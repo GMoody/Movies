@@ -17,9 +17,9 @@
         vm.favourites = null;
         vm.isAuthenticated = null;
 
-        vm.removeFollower = removeFollower;
         vm.loadPage = loadPage;
         vm.transition = transition;
+        vm.setFavourites = setFavourites;
 
         loadAll();
 
@@ -65,14 +65,11 @@
                 vm.queryCount = vm.totalItems;
                 vm.favourites = data;
                 vm.page = pagingParams.page;
+                for(var i = 0; i < data.length; i++) data[i].subscribed = true;
             }
             function onError(error) {
                 AlertService.error(error.data.message);
             }
-        }
-        function removeFollower(movie) {
-            Favourites.removeCurrentFollower({movieID: movie.id});
-            $state.reload();
         }
         function transition() {
             $state.transitionTo($state.$current, {
@@ -83,6 +80,11 @@
         function loadPage (page) {
             vm.page = page;
             vm.transition();
+        }
+        function setFavourites(movie) {
+            Favourites.removeCurrentFollower({movieID: movie.id});
+            movie.subscribed = false;
+            vm.favourites.splice(vm.favourites.indexOf(movie), 1);
         }
     }
 })();

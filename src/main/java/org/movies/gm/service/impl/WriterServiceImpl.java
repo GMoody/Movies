@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service Implementation for managing Writer.
@@ -35,8 +36,10 @@ public class WriterServiceImpl implements WriterService{
      */
     public Writer save(Writer writer) {
         log.debug("Request to save Writer : {}", writer);
-        Writer result = writerRepository.save(writer);
-        return result;
+        Optional<Writer> requested = writerRepository.
+            findByFirstNameAndLastNameIgnoreCase(writer.getFirstName(), writer.getLastName());
+        if(!requested.isPresent()) return writerRepository.save(writer);
+        else return requested.get();
     }
 
     /**
@@ -72,6 +75,8 @@ public class WriterServiceImpl implements WriterService{
      */
     public void delete(Long id) {
         log.debug("Request to delete Writer : {}", id);
+        Writer writer = writerRepository.findOneWithEagerRelationships(id);
+        writer.getMovies().forEach(m -> m.getWriters().remove(writer));
         writerRepository.delete(id);
     }
 
