@@ -10,6 +10,12 @@
                     </span>
                 </button>
             </div>
+            <div class="filter-box">
+                <div class="form-group">
+                    <label data-translate="global.labels.filter" for="filter">Filter</label>
+                    <input type="text" ng-model="filter" id="filter" class="form-control">
+                </div>
+            </div>
         </div>
     </div>
     <br/>
@@ -24,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="director in vm.directors track by director.id">
+                <tr ng-repeat="director in vm.directors | filter:filter">
                     <td><a ui-sref="director-detail({id:director.id})">{{director.id}}</a></td>
                     <td>{{director.firstName}}</td>
                     <td>{{director.lastName}}</td>

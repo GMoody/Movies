@@ -10,6 +10,12 @@
                     </span>
                 </button>
             </div>
+            <div class="filter-box">
+                <div class="form-group">
+                    <label data-translate="global.labels.filter" for="filter">Filter</label>
+                    <input type="text" ng-model="filter" id="filter" class="form-control">
+                </div>
+            </div>
         </div>
     </div>
     <br/>
@@ -23,7 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="genre in vm.genres track by genre.id">
+                <tr ng-repeat="genre in vm.genres | filter:filter">
                     <td><a ui-sref="genre-detail({id:genre.id})">{{genre.id}}</a></td>
                     <td>{{genre.title}}</td>
                     <td class="text-right">

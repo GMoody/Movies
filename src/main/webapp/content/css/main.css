@@ -315,6 +315,10 @@ entity tables helpers
         width: 50px;
     }
 
+    .users > thead > tr > th {
+        width: 45px;
+    }
+
     .favourites > thead > tr > th {
         width: 50px;
     }

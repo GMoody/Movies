@@ -8,6 +8,12 @@
                     <span data-translate="moviesApp.movie.home.createLabel">Add</span>
                 </button>
             </div>
+            <div class="filter-box">
+                <div class="form-group">
+                    <label data-translate="global.labels.filter" for="filter">Filter</label>
+                    <input type="text" ng-model="filter" id="filter" class="form-control">
+                </div>
+            </div>
         </div>
     </div>
     <br/>
@@ -24,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="movie in vm.movies track by movie.id">
+                <tr ng-repeat="movie in vm.movies | filter:filter">
                     <td><a ui-sref="movie-detail({id:movie.id})">{{movie.id}}</a></td>
                     <td>{{movie.title}}</td>
                     <td>{{movie.year}}</td>
