@@ -43,6 +43,9 @@ public interface MovieService {
      */
     void delete(Long id);
 
+    /*
+     * TODO: Comment methods
+     */
     Movie addCurrentFollower(Long movieID);
     Movie removeCurrentFollower(Long movieID);
     Set<User> getMovieFollowers(Long id);
