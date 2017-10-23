@@ -1,7 +1,4 @@
 # Movies
-
-This application was generated using JHipster 3.11.0, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v3.11.0](https://jhipster.github.io/documentation-archive/v3.11.0).
-
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
@@ -27,8 +24,6 @@ Bower is used to manage CSS and JavaScript dependencies used in this application
 specifying a newer version in `bower.json`. You can also run `bower update` and `bower install` to manage dependencies.
 Add the `-h` flag on any command to see how you can use it. For example, `bower update -h`.
 
-For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
-
 ## Building for production
 
 To optimize the Movies application for production, run:
@@ -41,17 +36,6 @@ To ensure everything worked, run:
     java -jar target/*.war
 
 Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
-
-Refer to [Using JHipster in production][] for more details.
-
-[JHipster Homepage and latest documentation]: https://jhipster.github.io
-[JHipster 3.11.0 archive]: https://jhipster.github.io/documentation-archive/v3.11.0
-
-[Using JHipster in development]: https://jhipster.github.io/documentation-archive/v3.11.0/development/
-[Using Docker and Docker-Compose]: https://jhipster.github.io/documentation-archive/v3.11.0/docker-compose
-[Using JHipster in production]: https://jhipster.github.io/documentation-archive/v3.11.0/production/
-[Running tests page]: https://jhipster.github.io/documentation-archive/v3.11.0/running-tests/
-[Setting up Continuous Integration]: https://jhipster.github.io/documentation-archive/v3.11.0/setting-up-ci/
 
 
 [Node.js]: https://nodejs.org/
